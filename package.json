@@ -10,7 +10,7 @@
     "cypress:open": "cypress open",
     "cypress:headless": "nyc --reporter=text-summary cypress run --headless",
     "cypress:browser": "nyc --reporter=text-summary cypress run --browser chrome --no-exit",
-    "coverage": "npm test:jest && npm cypress:open && node ./ci/mergeCoverage.js",
+    "coverage": "npm test && npm cypress && node ./ci/mergeCoverage.js",
     "sonar": "rimraf .scannerwork && node node_modules/sonarqube-scanner/dist/bin/sonar-scanner"
   },
   "dependencies": {

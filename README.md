@@ -46,9 +46,6 @@ http://localhost:3000
 
 
 # To run cypress tests - currently broken due to next.js webpack 5 implementation not working with cypress-webpack-preprocessor.
-- fixing...
-NOTE: bug with cypress - when npm installing it removes the code in cypress/plugins/index.js
-
 1. After install just check this file out again
 ```
 git checkout cypress/plugins/index.js
@@ -61,7 +58,7 @@ npm run dev
 
 3. Next run cypress tests
 ```
-npm run cypress:headless
+npm run cypress
 ```
 
 done !
@@ -80,7 +77,18 @@ npm run storybook
 ```
 npm test
 ```
-# run test with coverage
+
+# run test with coverage - combining coverage from jest and cypress into 1
 ```
-npm test -- --coverage
+npm run coverage
 ```
+# npm run sonar - to see collated coverage
+- first follow instructs to run local sonar server - sonar/
+- Then run sonar
+```
+npm run sonar
+```
+
+view coverage report and code quality 
+
+done!!

@@ -20,7 +20,7 @@
     ],
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "pretty": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
@@ -52,7 +52,8 @@
     "forceConsistentCasingInFileNames": true,
     // "noEmit": true, -- breaks cypress testing - cypress-webpack-preprocessor - node_modules/@cypress/webpack-preprocessor/diest.index.js err.replace
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
     "src/**/*",

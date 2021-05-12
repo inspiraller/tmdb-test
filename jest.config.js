@@ -23,7 +23,8 @@ module.exports = {
     'ts-jest': {
       diagnostics: {
         warnOnly: true
-      }
+      },
+      tsconfig: '<rootDir>/jest.tsconfig.json'
     }
   },
   testResultsProcessor: 'jest-sonar-reporter',
