@@ -1,0 +1,124 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>index.tsx</title>
+      <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/codemirror.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/mode/javascript/javascript.min.js" type="text/javascript" charset="utf-8"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/codemirror.min.css" type="text/css" rel="stylesheet">
+<script src="..\..\..\..\..\..\assets\source-file.js" type="text/javascript" charset="utf-8"></script>
+<link href="..\..\..\..\..\..\assets\source-file.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+    <div style="margin-top:3em" class="ui container"><h1 class="ui header"><a href="..\..\..\..\..\..\index.html">TypeScript coverage report</a></h1><table style="margin-top:2em" class="ui celled table"><thead class=""><tr class=""><th class="">Filename</th><th class="">Percent</th><th class="">Threshold</th><th class="">Total</th><th class="">Covered</th><th class="">Uncovered</th></tr></thead><tbody class=""><tr class="positive"><td class="">src\components\Specific\Movies\SearchMovies\index.tsx</td><td class="">100.00%</td><td class="">91%</td><td class="">176</td><td class="">176</td><td class="">0</td></tr></tbody></table><textarea id="editor" readonly="" style="margin-top:3em">import React, { FC, useCallback, useContext, useState } from &quot;react&quot;;
+
+import axios, { AxiosResponse } from &quot;axios&quot;;
+import { PropsImgConfig, PropsMovie, PropsMovieLight } from &quot;src/types&quot;;
+import { Button, Form, Input, InputOnChangeData } from &quot;semantic-ui-react&quot;;
+
+import { ContextMovies } from &quot;../_ContextMovies&quot;;
+import DropdownMovieGenres from &quot;./DropdownMovieGenres&quot;;
+import { ThandleDropdownChange } from &quot;src/components/Common/Dropdown&quot;;
+import text from &quot;src/util/text&quot;;
+import { useSelector } from &quot;react-redux&quot;;
+import { ApplicationState } from &quot;src/store/config/rootReducer&quot;;
+
+const api_key = process.env.api_key;
+
+type ThandleInputChange = (
+  _: React.ChangeEvent&lt;HTMLInputElement&gt;,
+  data: InputOnChangeData
+) =&gt; void;
+
+type TaxSearchMovies = (props?: {
+  genres?: string;
+  voteAvg?: string;
+}) =&gt; Promise&lt;AxiosResponse&lt;{ page: number; results: PropsMovie[] }&gt;&gt;;
+
+const axSearchMovies: TaxSearchMovies = (props) =&gt; {
+  const { genres, voteAvg } = props || {};
+  const with_genres = genres ? `&amp;with_genres=${genres}` : &quot;&quot;;
+  let vote_average = &quot;&quot;;
+  if (voteAvg) {
+    const intVoteAvg = parseInt(voteAvg, 10);
+    if (intVoteAvg) {
+      vote_average = `&amp;vote_average.gte=${intVoteAvg}`;
+    }
+  }
+  return axios({
+    // all movies
+    url: `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}${with_genres}${vote_average}&amp;language=en-US&amp;sort_by=popularity.desc&amp;include_adult=false&amp;include_video=false&amp;page=1&amp;with_watch_monetization_types=flatrate&amp;page=10`,
+    // movies now playing...
+    // url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}&amp;language=en-US&amp;page=10`,
+    method: &quot;GET&quot;,
+  });
+};
+
+const ButtonSearchMovies: FC = () =&gt; {
+  const { setMovies } = useContext(ContextMovies);
+  const [genres, setGenres] = useState&lt;string[]&gt;([]);
+  const [voteAvg, setVoteAvg] = useState&lt;string&gt;(&quot;&quot;);
+
+  const img_config = useSelector(
+    (state: ApplicationState) =&gt; state.movies?.img_config
+  );
+  const getCustomFullPosterPath = (poster_path: string) =&gt; {
+    const { base_url, poster_sizes } = img_config as PropsImgConfig;
+    const posterSizeSmall = poster_sizes[0];
+    const custom_full_poster_path = `${base_url}/${posterSizeSmall}${poster_path}`;
+    return custom_full_poster_path;
+  };
+
+  const handleSearchMovies = useCallback(() =&gt; {
+    axSearchMovies({ genres: genres.join(&quot;,&quot;), voteAvg }).then((res) =&gt; {
+      const { results } = res.data;
+      const reduced: PropsMovieLight[] = results.map((item) =&gt; ({
+        id: item.id,
+        title: item.title,
+        popularity: item.popularity,
+        vote_average: item.vote_average,
+        custom_full_poster_path: getCustomFullPosterPath(item.poster_path),
+      }));
+      setMovies(reduced);
+    });
+  }, [genres, voteAvg]);
+
+  const handleDropdownChange: ThandleDropdownChange = (_, data) =&gt; {
+    setGenres(data.value as string[]);
+  };
+  const handleVoteChange: ThandleInputChange = (_, data) =&gt; {
+    setVoteAvg(data.value);
+  };
+  return (
+    &lt;Form&gt;
+      &lt;Form.Group&gt;
+        &lt;DropdownMovieGenres
+          {...{ handleChange: handleDropdownChange }}
+          style={{ width: &quot;400px&quot; }}
+        /&gt;
+        &lt;Input
+          label={{ basic: true, content: text(&quot;vote avg&quot;) }}
+          labelPosition=&quot;right&quot;
+          placeholder={text(&quot;avg&quot;)}
+          style={{ width: &quot;54px&quot; }}
+          onChange={handleVoteChange}
+        /&gt;
+        &lt;Button
+          style={{ marginLeft: &quot;80px&quot; }}
+          primary
+          onClick={handleSearchMovies}
+        &gt;
+          Search
+        &lt;/Button&gt;
+      &lt;/Form.Group&gt;
+    &lt;/Form&gt;
+  );
+};
+
+export default ButtonSearchMovies;
+</textarea><pre id="annotations" style="display:none">[]</pre></div>
+    <p class="footer-text">TypeScript Coverage Report generated by <a href="https://github.com/plantain-00/type-coverage">type-coverage</a> and <a href="https://github.com/alexcanessa/typescript-coverage-report">typescript-coverage-report</a> at Wed, 12 May 2021 16:43:54 GMT</p>
+    </body>
+  </html>
+  

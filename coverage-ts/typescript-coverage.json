@@ -1,0 +1,226 @@
+{
+  "fileCounts": {},
+  "anys": [
+    {
+      "file": "src\\types\\_util.ts",
+      "line": 10,
+      "character": 28,
+      "text": "payload",
+      "kind": 1
+    },
+    {
+      "file": "src\\store\\data\\movies\\reducer.ts",
+      "line": 5,
+      "character": 17,
+      "text": "type",
+      "kind": 1
+    },
+    {
+      "file": "src\\store\\data\\movies\\reducer.ts",
+      "line": 9,
+      "character": 23,
+      "text": "genres",
+      "kind": 1
+    },
+    {
+      "file": "src\\store\\data\\movies\\reducer.ts",
+      "line": 14,
+      "character": 27,
+      "text": "img_config",
+      "kind": 1
+    },
+    {
+      "file": "src\\store\\config\\persist.ts",
+      "line": 17,
+      "character": 10,
+      "text": "state",
+      "kind": 1
+    },
+    {
+      "file": "src\\store\\config\\persist.ts",
+      "line": 19,
+      "character": 11,
+      "text": "e",
+      "kind": 1
+    },
+    {
+      "file": "src\\store\\config\\persist.ts",
+      "line": 32,
+      "character": 11,
+      "text": "e",
+      "kind": 1
+    },
+    {
+      "file": "src\\util\\getQs.ts",
+      "line": 10,
+      "character": 13,
+      "text": "err",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\create-session\\index.tsx",
+      "line": 2,
+      "character": 7,
+      "text": "cookieCutter",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\create-session\\index.tsx",
+      "line": 39,
+      "character": 16,
+      "text": "data",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\create-session\\index.tsx",
+      "line": 39,
+      "character": 21,
+      "text": "success",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\create-session\\index.tsx",
+      "line": 40,
+      "character": 10,
+      "text": "cookieCutter",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\create-session\\index.tsx",
+      "line": 40,
+      "character": 23,
+      "text": "set",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\create-session\\index.tsx",
+      "line": 40,
+      "character": 45,
+      "text": "data",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\create-session\\index.tsx",
+      "line": 40,
+      "character": 50,
+      "text": "session_id",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\login\\index.tsx",
+      "line": 22,
+      "character": 16,
+      "text": "request_token",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\login\\index.tsx",
+      "line": 22,
+      "character": 38,
+      "text": "data",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\login\\index.tsx",
+      "line": 23,
+      "character": 12,
+      "text": "request_token",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\login\\index.tsx",
+      "line": 24,
+      "character": 69,
+      "text": "request_token",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\login\\index.tsx",
+      "line": 29,
+      "character": 14,
+      "text": "err",
+      "kind": 1
+    },
+    {
+      "file": "src\\pages\\login\\index.tsx",
+      "line": 30,
+      "character": 30,
+      "text": "err",
+      "kind": 1
+    },
+    {
+      "file": "src\\components\\Common\\Dropdown\\index.tsx",
+      "line": 14,
+      "character": 2,
+      "text": "defaultValue",
+      "kind": 1
+    },
+    {
+      "file": "src\\components\\Common\\Dropdown\\index.tsx",
+      "line": 26,
+      "character": 2,
+      "text": "defaultValue",
+      "kind": 1
+    },
+    {
+      "file": "@types\\index.d.ts",
+      "line": 46,
+      "character": 8,
+      "text": "content",
+      "kind": 1
+    },
+    {
+      "file": "@types\\index.d.ts",
+      "line": 47,
+      "character": 15,
+      "text": "ReactComponent",
+      "kind": 1
+    },
+    {
+      "file": "@types\\index.d.ts",
+      "line": 48,
+      "character": 17,
+      "text": "content",
+      "kind": 1
+    },
+    {
+      "file": "__tests__\\__utils__\\mockDispatch.ts",
+      "line": 3,
+      "character": 29,
+      "text": "payload",
+      "kind": 1
+    },
+    {
+      "file": "__tests__\\__utils__\\mockDispatch.ts",
+      "line": 11,
+      "character": 20,
+      "text": "payload",
+      "kind": 1
+    },
+    {
+      "file": "__tests__\\__utils__\\mockDispatch.ts",
+      "line": 12,
+      "character": 11,
+      "text": "payload",
+      "kind": 1
+    },
+    {
+      "file": "__tests__\\__utils__\\mockDispatch.ts",
+      "line": 15,
+      "character": 6,
+      "text": "payload",
+      "kind": 1
+    },
+    {
+      "file": "__tests__\\pages\\movies\\index.test.tsx",
+      "line": 13,
+      "character": 4,
+      "text": "tree",
+      "kind": 1
+    }
+  ],
+  "percentage": 97.86648313833447,
+  "total": 1453,
+  "covered": 1422,
+  "uncovered": 31
+}

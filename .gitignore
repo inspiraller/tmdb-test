@@ -42,3 +42,4 @@ cypress-coverage
 .next
 reports
 test-report.xml
+coverage-ts
