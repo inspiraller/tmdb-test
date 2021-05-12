@@ -9,14 +9,33 @@ module.exports = {
   presets: ["next/babel"],
   env: {
     development: {
-      plugins: ["istanbul"],
+      plugins: ["istanbul", "transform-class-properties"],
     },
     production: {
       plugins: [
-        "transform-remove-console",
-        "transform-class-properties",
-        "istanbul"
+        "transform-remove-console"
       ],
     },
   },
+  plugins: [
+    [
+      "@babel/plugin-transform-runtime", {
+        "regenerator": true
+      }
+    ],
+    [
+      'module-resolver',
+      {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        root: ['./'],
+        alias: {
+          src: './src',
+          __tests__: './__tests__',
+          Common: './src/Components/Common',
+          '@types': './@types',
+          stories: './stories'
+        }
+      }
+    ]
+  ]
 };

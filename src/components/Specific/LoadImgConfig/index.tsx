@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "src/store/config/rootReducer";
 import at from "src/store/data/movies/actionTypes";
@@ -22,10 +22,10 @@ const useMovieImgConfig = () => {
     (state: ApplicationState) => state.movies?.img_config
   );
   const dispatch = useDispatch();
-  const acGetImgConfig = (img_config: PropsImgConfig) =>
+  const acGetImgConfig = (payload: PropsImgConfig) =>
     dispatch({
       type: at.GET_MOVIE_IMG_CONFIG,
-      img_config
+      img_config: payload
     });
 
   return { img_config, acGetImgConfig };

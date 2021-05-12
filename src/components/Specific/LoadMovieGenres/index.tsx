@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ApplicationState } from "src/store/config/rootReducer";
 import at from "src/store/data/movies/actionTypes";
@@ -18,10 +18,10 @@ const axGetGenres: TaxGetGenres = () => {
 const useMovieGenres = () => {
   const genres = useSelector((state: ApplicationState) => state.movies?.genres);
   const dispatch = useDispatch();
-  const acGetGenres = (genres: PropsMovieGenre[]) =>
+  const acGetGenres = (payload: PropsMovieGenre[]) =>
     dispatch({
       type: at.GET_MOVIE_GENRES,
-      genres,
+      payload,
     });
 
   return { genres, acGetGenres };
@@ -32,8 +32,8 @@ const LoadMovieGenres: FC = ({ children }) => {
   useEffect(() => {
     if (!genres) {
       axGetGenres().then((res) => {
-        const { genres } = res.data;
-        acGetGenres(genres);
+        const { genres: resultGenres } = res.data;
+        acGetGenres(resultGenres);
       });
     }
   }, [genres]);

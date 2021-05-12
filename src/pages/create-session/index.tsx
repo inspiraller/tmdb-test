@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import cookieCutter from 'cookie-cutter';
 
 import axios from "axios";

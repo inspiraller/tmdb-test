@@ -1,3 +1,4 @@
+import React from 'react';
 import LoadMovieGenres from "src/components/Specific/LoadMovieGenres";
 import MasterHead from "src/components/Master/MasterHead";
 import Movies from "src/components/Specific/Movies";

@@ -1,4 +1,4 @@
-import {FC, ComponentType} from 'react';
+import React, {FC, ComponentType} from 'react';
 import { Provider } from 'react-redux'
 import { saveState } from 'src/store/config/persist';
 import { ApplicationState } from 'src/store/config/rootReducer';

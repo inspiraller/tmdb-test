@@ -34,3 +34,11 @@ yarn-error.log*
 .vercel
 .env
 READMES
+sonar-project.properties
+cypress-coverage
+.vscode
+.scannerwork
+.nyc_output/*
+.next
+reports
+test-report.xml

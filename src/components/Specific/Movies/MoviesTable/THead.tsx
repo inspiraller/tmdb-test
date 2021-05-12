@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from "react";
 import { PropsMovieLight } from "src/types";
 import { Table } from "semantic-ui-react";
-import { PropsContext, ContextMovies } from "../_ContextMovies";
-import sortKey from "./sort";
+import { ContextMovies } from "../_ContextMovies";
+import sortKey from "./sortTh";
 
 const capitalise = (str: string) =>
   `${str.substring(0, 1).toUpperCase()}${str.substr(1)}`;
@@ -11,12 +11,12 @@ const THead: FC = () => {
   // TODO: sort maybe better localised to Thead
   const { movies, setMovies, sort } = React.useContext(
     ContextMovies
-  ) as PropsContext;
+  );
   type Tkey = keyof typeof sort;
   const movie0 = movies[0];
 
   const resetTogglers = useCallback(() => {
-    Object.keys(sort).map((sortTogglerName) => {
+    Object.keys(sort).forEach((sortTogglerName) => {
       sort[sortTogglerName as Tkey].set(undefined);
     });
   }, []);
@@ -27,7 +27,7 @@ const THead: FC = () => {
     }
     const sortType = keyName !== "title" ? "number" : "string";
     resetTogglers();
-    const toggleItem = sort[keyName as Tkey];
+    const toggleItem = sort[keyName];
     toggleItem.set(!toggleItem.asc);
     setMovies(
       sortKey<PropsMovieLight>(movies, keyName, toggleItem.asc, sortType)

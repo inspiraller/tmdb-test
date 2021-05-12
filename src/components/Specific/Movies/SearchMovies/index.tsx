@@ -1,10 +1,10 @@
-import { FC, useCallback, useContext, useState } from "react";
+import React, { FC, useCallback, useContext, useState } from "react";
 
 import axios, { AxiosResponse } from "axios";
 import { PropsImgConfig, PropsMovie, PropsMovieLight } from "src/types";
 import { Button, Form, Input, InputOnChangeData } from "semantic-ui-react";
 
-import { PropsContext, ContextMovies } from "../_ContextMovies";
+import { ContextMovies } from "../_ContextMovies";
 import DropdownMovieGenres from "./DropdownMovieGenres";
 import { ThandleDropdownChange } from "src/components/Common/Dropdown";
 import text from "src/util/text";
@@ -43,7 +43,7 @@ const axSearchMovies: TaxSearchMovies = (props) => {
 };
 
 const ButtonSearchMovies: FC = () => {
-  const { setMovies } = useContext(ContextMovies) as PropsContext;
+  const { setMovies } = useContext(ContextMovies);
   const [genres, setGenres] = useState<string[]>([]);
   const [voteAvg, setVoteAvg] = useState<string>("");
 

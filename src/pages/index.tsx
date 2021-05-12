@@ -1,11 +1,3 @@
-import Link from 'next/link'
-
-const Home = () => {
-  return (
-    <Link href="/movies">
-      <a>Go to Movies</a>
-    </Link>
-  );
-};
-
+// this is merely a placeholder - the / path will auto redirect from next.config.js
+const Home = () => null
 export default Home;

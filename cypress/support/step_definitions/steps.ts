@@ -71,6 +71,7 @@ Then(/input \'([^\']+)\' is disabled/, strInputName => {
   cy.get(strSelector).should('be.disabled');
 });
 Then(/I redirect to url \'([^\']+)\'/, strUrl => {
+  cy.task('log', `example log`);
   // cy.location().should(loc => {
   //   cy.task('log', `location href="${loc.href}"`);
   // });

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { PropsMovieLight } from "src/types";
-import { PropsContext, ContextMovies } from "../_ContextMovies";
+import { ContextMovies } from "../_ContextMovies";
 
 interface PropsRenderVal {
   title: string;
@@ -12,7 +12,7 @@ const RenderVal: FC<PropsRenderVal> = ({ title, keyName, val }) =>
   keyName !== "custom_full_poster_path" ? <> {val}</> : <img src={val as string} alt={title} />;
 
 const TBody: FC = () => {
-  const { movies } = React.useContext(ContextMovies) as PropsContext;
+  const { movies } = React.useContext(ContextMovies);
   return (
     <tbody>
       {movies.map((item: PropsMovieLight) => (

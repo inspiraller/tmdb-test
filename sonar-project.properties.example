@@ -1,0 +1,12 @@
+sonar.projectName=tmdb-test
+sonar.projectKey=tmdb-test
+sonar.host.url=http://localhost:9000
+sonar.login=c0dcd35e23356729f8be3fa4b5d15c5af98e5af1
+sonar.tests=./__tests__/
+sonar.sources=./src/
+sonar.exclusions=**/__tests__/**,**/archive/**,**/cypress/**,**/store/config/**, **/src/types/**
+
+sonar.testExecutionReportPaths=./reports/test-reporter.xml
+
+sonar.javascript.lcov.reportPaths=./coverage/lcov.info
+sonar.typescript.lcov.reportPaths=./coverage/lcov.info

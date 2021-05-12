@@ -14,7 +14,7 @@ const compareString = (a: string, b: string, asc?: boolean) =>
 const compareNumber = (a: number, b: number, asc?: boolean) =>
   asc ? b - a : a - b;
 
-const sortKey = <T extends {}>(
+const sortTh = <T extends {}>(
   arr: T[],
   key: keyof T,
   asc?: boolean,
@@ -27,4 +27,4 @@ const sortKey = <T extends {}>(
   return arr.slice().sort(fnSortToggle);
 };
 
-export default sortKey;
+export default sortTh;

@@ -10,7 +10,7 @@ let store: Tstore | undefined;
 
 const initStore = (preloadedState: ApplicationState = loadState()) => configureStore({ initialState: preloadedState });
 
-export const initializeStore = (preloadedState: ApplicationState) => {
+export const initializeStore = (preloadedState: ApplicationState = {}) => {
   let _store: Tstore = store ?? initStore(preloadedState)
 
   if (preloadedState && store) {
