@@ -9,7 +9,7 @@ type TmockDispatch = (
 const mockDispatch: TmockDispatch = (actionsRef, method, type = 'anything') => {
   const mocker = jest.fn();
   const actions = actionsRef;
-  actions[method] = payload => {
+  actions[method] = (payload) => {
     mocker(payload);
     return {
       type,

@@ -1,12 +1,9 @@
-// import { PluginConfig } from 'cypress';
-
 const cucumber = require('cypress-cucumber-preprocessor').default;
 const browserify = require('@cypress/browserify-preprocessor');
 
 const dotenvPlugin = require('cypress-dotenv');
 
-module.exports = (on, configRef) => {
-  let config = configRef;
+module.exports = (on, config) => {
   config = dotenvPlugin(config);
   // config.env.api_key = process.env.api_key
 

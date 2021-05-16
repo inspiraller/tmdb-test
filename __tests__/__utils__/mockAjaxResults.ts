@@ -8,7 +8,7 @@ export const mockAxios = new MockAdapter(axios);
 
 export const msTimeout = 100;
 export const hackWaitSagaAjaxReturn = () =>
-  new Promise<void>(resolve => {
+  new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve(); // hack to wait for saga to finish
     }, msTimeout);
@@ -17,7 +17,7 @@ export const hackWaitSagaAjaxReturn = () =>
 export const getMockSuccess = <T>(url: string, mock: T) => {
   mockAxios.reset();
   // mockAxios.onGet(getEndPointQs(url, qs)).reply(200, mock);
-  mockAxios.onGet(getEndPointQs(url)).reply(config => {
+  mockAxios.onGet(getEndPointQs(url)).reply((config) => {
     // console.log('on success return mock............................................................');
     return [200, mock];
   });

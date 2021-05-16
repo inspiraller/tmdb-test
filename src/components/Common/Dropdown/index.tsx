@@ -1,7 +1,10 @@
-import React, { FC } from "react";
-import { Dropdown as SemanticDropdown, DropdownProps } from "semantic-ui-react";
+import React, { FC } from 'react';
+import { Dropdown as SemanticDropdown, DropdownProps } from 'semantic-ui-react';
 
-export type ThandleDropdownChange =  (event: React.SyntheticEvent<HTMLElement, Event>, data: DropdownProps) => void;
+export type ThandleDropdownChange = (
+  event: React.SyntheticEvent<HTMLElement, Event>,
+  data: DropdownProps
+) => void;
 
 export type TOptions = Array<{
   key: string;
@@ -17,8 +20,8 @@ export interface Props {
   disabled?: boolean;
   Options: TOptions;
   style?: {
-    [key: string] : string
-  }
+    [key: string]: string;
+  };
 }
 
 const Dropdown: FC<Props> = ({

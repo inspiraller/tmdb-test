@@ -1,17 +1,14 @@
-import React, { FC, useCallback } from "react";
-import { PropsMovieLight } from "src/types";
-import { Table } from "semantic-ui-react";
-import { ContextMovies } from "../_ContextMovies";
-import sortKey from "./sortTh";
+import React, { FC, useCallback } from 'react';
+import { PropsMovieLight } from 'src/types';
+import { Table } from 'semantic-ui-react';
+import { ContextMovies } from '../_ContextMovies';
+import sortKey from './sortTh';
 
-const capitalise = (str: string) =>
-  `${str.substring(0, 1).toUpperCase()}${str.substr(1)}`;
+const capitalise = (str: string) => `${str.substring(0, 1).toUpperCase()}${str.substr(1)}`;
 
 const THead: FC = () => {
   // TODO: sort maybe better localised to Thead
-  const { movies, setMovies, sort } = React.useContext(
-    ContextMovies
-  );
+  const { movies, setMovies, sort } = React.useContext(ContextMovies);
   type Tkey = keyof typeof sort;
   const movie0 = movies[0];
 
@@ -22,23 +19,21 @@ const THead: FC = () => {
   }, []);
 
   const handleToggle = (keyName: keyof PropsMovieLight) => {
-    if (keyName === "id" || keyName === 'custom_full_poster_path') {
+    if (keyName === 'id' || keyName === 'custom_full_poster_path') {
       return;
     }
-    const sortType = keyName !== "title" ? "number" : "string";
+    const sortType = keyName !== 'title' ? 'number' : 'string';
     resetTogglers();
     const toggleItem = sort[keyName];
     toggleItem.set(!toggleItem.asc);
-    setMovies(
-      sortKey<PropsMovieLight>(movies, keyName, toggleItem.asc, sortType)
-    );
+    setMovies(sortKey<PropsMovieLight>(movies, keyName, toggleItem.asc, sortType));
   };
 
   const getSorted = (key: string) => {
     const asc = sort[key as keyof typeof sort]?.asc;
-    const direction = asc ? "ascending" : "descending";
+    const direction = asc ? 'ascending' : 'descending';
     return asc !== undefined ? direction : undefined;
-  }
+  };
 
   return movies.length ? (
     <Table.Header>
@@ -46,9 +41,7 @@ const THead: FC = () => {
         {Object.keys(movie0).map((key) => (
           <Table.HeaderCell
             key={`movie-id-${movie0.id}-th-${key}`}
-            sorted={
-              getSorted(key)
-            }
+            sorted={getSorted(key)}
             onClick={() => handleToggle(key as keyof PropsMovieLight)}
           >
             {capitalise(key)}

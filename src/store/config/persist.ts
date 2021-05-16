@@ -23,7 +23,7 @@ export const loadState: TloadState = () => {
 };
 
 type TsaveState = (state: ApplicationState) => void;
-export const saveState: TsaveState = state => {
+export const saveState: TsaveState = (state) => {
   if (!PERSIST_STORE) {
     return;
   }

@@ -1,4 +1,3 @@
-
 declare module 'cookie-cutter';
 
 declare namespace NodeJS {
@@ -48,4 +47,3 @@ declare module '*.svg' {
   export const ReactComponent: any;
   export default content;
 }
-

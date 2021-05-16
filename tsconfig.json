@@ -35,9 +35,6 @@
       ],
       "__tests__/*": [
         "__tests__/*"
-      ],
-      "stories/*": [
-        "stories/*"
       ]
     },
     "typeRoots": [
@@ -57,7 +54,6 @@
   },
   "include": [
     "src/**/*",
-    "stories",
     "@types",
     "__tests__"
   ],

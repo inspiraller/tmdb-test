@@ -1,14 +1,14 @@
-import React, { FC } from "react";
-import { useSelector } from "react-redux";
-import Dropdown, { ThandleDropdownChange } from "src/components/Common/Dropdown";
-import { ApplicationState } from "src/store/config/rootReducer";
-import text from "src/util/text";
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import Dropdown, { ThandleDropdownChange } from 'src/components/Common/Dropdown';
+import { ApplicationState } from 'src/store/config/rootReducer';
+import text from 'src/util/text';
 
 interface Props {
   handleChange: ThandleDropdownChange;
   style?: {
-    [key: string] : string
-  }
+    [key: string]: string;
+  };
 }
 
 const DropdownMovieGenres: FC<Props> = ({ handleChange, style }) => {
@@ -17,15 +17,15 @@ const DropdownMovieGenres: FC<Props> = ({ handleChange, style }) => {
     ? genres.map((item) => ({
         key: `${item.id}`,
         value: `${item.id}`,
-        text: item.name,
+        text: item.name
       }))
     : [];
   return (
     <Dropdown
       {...{
-        name: "genre",
-        label: text("genre"),
-        defaultValue: "",
+        name: 'genre',
+        label: text('genre'),
+        defaultValue: '',
         handleChange,
         // handleChange: (evt, data) => {
         //   console.log("data =", data.value); // Genre[];

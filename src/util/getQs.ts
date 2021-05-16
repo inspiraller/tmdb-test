@@ -1,7 +1,7 @@
 import { TJson, TJsonVal } from 'src/types';
 
 type TgetKeyValPair = (keyValPair: string) => TJson;
-const getKeyValPair: TgetKeyValPair = keyValPair => {
+const getKeyValPair: TgetKeyValPair = (keyValPair) => {
   const spEquals = decodeURI(keyValPair).split('=');
   const key = spEquals[0];
   let val = spEquals[1];
@@ -18,7 +18,7 @@ const getKeyValPair: TgetKeyValPair = keyValPair => {
 };
 
 type TgetQs = (qs: string) => TJson | null;
-export const getQs: TgetQs = qs => {
+export const getQs: TgetQs = (qs) => {
   if (!qs) {
     return null;
   }

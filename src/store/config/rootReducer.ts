@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import movies from "src/store/data/movies/reducer";
+import movies from 'src/store/data/movies/reducer';
 
 export interface ApplicationState {
   movies?: ReturnType<typeof movies>;

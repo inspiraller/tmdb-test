@@ -7,5 +7,9 @@
   "testFiles": "**/*.{feature,features}",
   "viewportWidth": 1428,
   "viewportHeight": 1000,
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "env": {
+    "email": "cypress.jsonexample@something.com"
+  }
 }

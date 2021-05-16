@@ -1,14 +1,13 @@
-import React, { FC} from "react";
-import { ProviderMovies } from "./_ContextMovies";
+import React, { FC } from 'react';
+import { ProviderMovies } from './_ContextMovies';
 import MoviesTable from './MoviesTable';
-import SearchMovies from "./SearchMovies";
+import SearchMovies from './SearchMovies';
 
 const Movies: FC = () => {
-
   return (
     <ProviderMovies>
       <SearchMovies />
-      <MoviesTable/>
+      <MoviesTable />
     </ProviderMovies>
   );
 };

@@ -9,8 +9,8 @@ module.exports = {
       {
         source: '/',
         destination: '/login',
-        permanent: false,
-      },
-    ]
-  },
-}
+        permanent: false
+      }
+    ];
+  }
+};

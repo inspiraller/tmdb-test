@@ -1,6 +1,6 @@
-import initialState, { PropsInitial } from "./_initialState";
-import at from "./actionTypes";
-import { AnyAction } from "redux";
+import { AnyAction } from 'redux';
+import initialState, { PropsInitial } from './_initialState';
+import at from './actionTypes';
 
 const reducer = (state: PropsInitial = initialState, action: AnyAction): PropsInitial => {
   switch (action.type) {

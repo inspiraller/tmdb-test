@@ -1,45 +1,58 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState } from 'react';
 
-import axios from "axios";
-import text from "src/util/text";
+import axios from 'axios';
+import text from 'src/util/text';
 
-import { WEBSITE } from "src/config";
-import { Button } from "semantic-ui-react";
-import MasterHead from "src/components/Master/MasterHead";
+import { WEBSITE } from 'src/config';
+import { Button } from 'semantic-ui-react';
+import MasterHead from 'src/components/Master/MasterHead';
+import Error, { PropsError } from 'src/components/Common/Error/Error';
 
-const api_key = process.env.api_key;
+const { api_key } = process.env;
+
+export const dataTestid = 'btn-login';
 
 const getRequestToken = () =>
   axios({
     url: `https://api.themoviedb.org/3/authentication/token/new?api_key=${api_key}`,
-    method: "GET",
+    method: 'GET'
   });
 
+export const dataTestidError = 'get-request-token-error';
+
 const Movies: FC = () => {
-  const [error, setError] = useState("");
-  const handleLogin = () =>
+  const [error, setError] = useState<PropsError | null>();
+  const handleLogin = () => {
+    console.log('api_key = ', api_key);
     getRequestToken()
       .then((res) => {
-        const { request_token } = res.data;
+        const request_token = res && res.data;
         if (request_token) {
+          /*eslint-disable no-restricted-globals */
           location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=${WEBSITE}/create-session`;
         } else {
-          setError(text("cannot create token"));
+          setError({
+            heading: text('Cannot create request_token'),
+            text: text('Please try logging in again')
+          });
         }
       })
       .catch((err) => {
-        console.log("err = ", err.toString());
+        setError({
+          heading: text('Cannot create request_token'),
+          text: text(err.toString())
+        });
       });
-
+  };
   return (
     <>
       <MasterHead />
       <div className="container">
         <main>
-          <Button primary onClick={handleLogin}>
+          <Button primary onClick={handleLogin} data-testid={dataTestid}>
             Login to TMDB
           </Button>
-          {error && <span className="error">{error}</span>}
+          <Error {...{ dataTestid: 'get-request-token-error', ...error }} />
         </main>
       </div>
     </>
