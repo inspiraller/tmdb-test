@@ -11,7 +11,8 @@ import { ApplicationState } from 'src/store/config/rootReducer';
 import DropdownMovieGenres from './DropdownMovieGenres';
 import { ContextMovies } from '../_ContextMovies';
 
-const { api_key } = process.env;
+/* eslint-disable prefer-destructuring */
+const api_key = process.env.api_key;
 
 type ThandleInputChange = (_: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void;
 

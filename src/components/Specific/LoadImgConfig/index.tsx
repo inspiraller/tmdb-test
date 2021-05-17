@@ -5,7 +5,8 @@ import at from 'src/store/data/movies/actionTypes';
 import axios, { AxiosResponse } from 'axios';
 import { PropsImgConfig } from 'src/types';
 
-const { api_key } = process.env;
+/* eslint-disable prefer-destructuring */
+const api_key = process.env.api_key;
 
 type TaxGetImgConfig = () => Promise<
   AxiosResponse<{ images: { base_url: string; poster_sizes: string[] } }>
@@ -18,14 +19,13 @@ const axGetImgConfig: TaxGetImgConfig = () => {
 };
 
 const useMovieImgConfig = () => {
-  const img_config = useSelector((state: ApplicationState) => state.movies?.img_config);
   const dispatch = useDispatch();
-  const acGetImgConfig = (payload: PropsImgConfig) =>
+  const acGetImgConfig = (img_config: PropsImgConfig) =>
     dispatch({
       type: at.GET_MOVIE_IMG_CONFIG,
-      img_config: payload
+      img_config
     });
-
+  const img_config = useSelector((state: ApplicationState) => state.movies?.img_config);
   return { img_config, acGetImgConfig };
 };
 

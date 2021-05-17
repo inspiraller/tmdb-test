@@ -5,7 +5,6 @@
 //     '########## instrumenting code coverage on starting dev environment #################################################'
 //   );
 // }
-console.log('babel.config.js - process.env.api_key = ', process.env.api_key);
 
 module.exports = {
   presets: ['next/babel'],

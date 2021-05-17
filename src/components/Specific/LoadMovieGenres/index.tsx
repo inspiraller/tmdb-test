@@ -5,7 +5,8 @@ import at from 'src/store/data/movies/actionTypes';
 import axios, { AxiosResponse } from 'axios';
 import { PropsMovieGenre } from 'src/types';
 
-const { api_key } = process.env;
+/* eslint-disable prefer-destructuring */
+const api_key = process.env.api_key;
 
 type TaxGetGenres = () => Promise<AxiosResponse<{ genres: PropsMovieGenre[] }>>;
 const axGetGenres: TaxGetGenres = () => {
@@ -16,14 +17,14 @@ const axGetGenres: TaxGetGenres = () => {
 };
 
 const useMovieGenres = () => {
-  const genres = useSelector((state: ApplicationState) => state.movies?.genres);
   const dispatch = useDispatch();
-  const acGetGenres = (payload: PropsMovieGenre[]) =>
+  const acGetGenres = (genres: PropsMovieGenre[]) => {
     dispatch({
       type: at.GET_MOVIE_GENRES,
-      payload
+      genres
     });
-
+  };
+  const genres = useSelector((state: ApplicationState) => state.movies?.genres);
   return { genres, acGetGenres };
 };
 
