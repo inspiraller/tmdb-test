@@ -8,7 +8,8 @@ import { Button } from 'semantic-ui-react';
 import MasterHead from 'src/components/Master/MasterHead';
 import Error, { PropsError } from 'src/components/Common/Error/Error';
 
-const { api_key } = process.env;
+/* eslint-disable prefer-destructuring */ // otherwise api_key becomes undefined
+const api_key = process.env.api_key;
 
 export const dataTestid = 'btn-login';
 
@@ -26,7 +27,7 @@ const Movies: FC = () => {
     console.log('api_key = ', api_key);
     getRequestToken()
       .then((res) => {
-        const request_token = res && res.data;
+        const request_token = res && res.data && res.data.request_token;
         if (request_token) {
           /*eslint-disable no-restricted-globals */
           location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=${WEBSITE}/create-session`;

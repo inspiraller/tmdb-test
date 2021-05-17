@@ -1,4 +1,4 @@
-import Cypress from 'cypress';
+// import Cypress from 'cypress'; <- this line was braking cypress - unable to get environment variables. Should be declared in cypress/tsconfig.js
 
 import { Before, Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 
@@ -29,17 +29,17 @@ Given(/I'm at homepage/, () => {
 Given(/I visit \'([^\']+)\'/, (url) => {
   cy.visit(url);
 });
+Given(/I am logged out tmdb/, (url) => {
+  cy.visit('https://www.themoviedb.org/logout');
+});
 Given(/I login to TMDB/, (url) => {
-  /* tslint:disable-next-line */
-  // const { email } = (Cypress as any).env('user');
-  // expect(email).to.be.a('string');
-  // const email = Cypress.env('email');
-  // expect(email).to.be.a('string');
-  // const cyEnv = Cypress as any;
-  // const api_key = cyEnv.env('api_key');
-  // cy.task('log', `api_key=${api_key}`);
-  // const email = cyEnv.env('email');
-  // cy.task('log', `email=${email}`);
+  const email = Cypress.env('email');
+  const password = Cypress.env('password');
+  cy.visit('https://www.themoviedb.org/login');
+
+  // should use this process.
+  // https://developers.themoviedb.org/3/authentication/validate-request-token
+  // to return
 });
 
 When(/I input \'([^\']+)\' with \'([^\']+)\'/, (strInputName, value) => {

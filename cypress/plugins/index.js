@@ -1,15 +1,7 @@
-// import { PluginConfig } from 'cypress';
-
 const cucumber = require('cypress-cucumber-preprocessor').default;
 const browserify = require('@cypress/browserify-preprocessor');
 
-const dotenvPlugin = require('cypress-dotenv');
-
-module.exports = (on, configRef) => {
-  let config = configRef;
-  config = dotenvPlugin(config);
-  // config.env.api_key = process.env.api_key
-
+module.exports = (on, config) => {
   // https://github.com/cypress-io/cypress-browserify-preprocessor
   const browserifyOptions = {
     ...browserify.defaultOptions,
@@ -33,11 +25,13 @@ module.exports = (on, configRef) => {
     }
     return brow(file);
   });
-  // on('before:browser:launch', (browser = {}, args) => {
-  //   if (browser.name === 'chrome') {
-  //     args.push('--remote-debugging-port=9222')
-  //     return args
-  //   }
-  // })
-  return config; // necessary for coverage
+
+  // credits - https://github.com/cypress-io/cypress/issues/1358
+  const configWithDotenv = require('dotenv').config(); // ({ path: '../../.env' });
+  if (configWithDotenv.error) {
+    throw configWithDotenv.error;
+  }
+  const env = { ...config.env, ...configWithDotenv.parsed };
+  const result = { ...config, env };
+  return result; // necessary for coverage and importing .env variables
 };

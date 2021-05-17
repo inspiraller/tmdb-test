@@ -1,6 +1,7 @@
 Feature: Movies
   Scenario: Homepage redirects to /login
-    Given I'm at homepage
+    Given I am logged out tmdb
+    And I'm at homepage
     Then I redirect to url '/login/'
 
   Scenario: Click login - redirect to tmdb website, then click login - redirect to create-session then movies

@@ -1,10 +1,11 @@
-console.log(1);
+// Note - console.log was breaking vscode emmet autosuggest with plugin stylelint
 // console.log('process.env.NODE_ENV = ', process.env.NODE_ENV);
 // if (process.env.NODE_ENV === 'development') {
 //   console.log(
 //     '########## instrumenting code coverage on starting dev environment #################################################'
 //   );
 // }
+console.log('babel.config.js - process.env.api_key = ', process.env.api_key);
 
 module.exports = {
   presets: ['next/babel'],
@@ -23,19 +24,5 @@ module.exports = {
         regenerator: true
       }
     ]
-    // [
-    //   'module-resolver',
-    //   {
-    //     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    //     root: ['./'],
-    //     alias: {
-    //       src: './src',
-    //       __tests__: './__tests__',
-    //       Common: './src/Components/Common',
-    //       '@types': './@types',
-    //       stories: './stories'
-    //     }
-    //   }
-    // ]
   ]
 };
