@@ -1,11 +1,3 @@
-// Note - console.log was breaking vscode emmet autosuggest with plugin stylelint
-// console.log('process.env.NODE_ENV = ', process.env.NODE_ENV);
-// if (process.env.NODE_ENV === 'development') {
-//   console.log(
-//     '########## instrumenting code coverage on starting dev environment #################################################'
-//   );
-// }
-
 module.exports = {
   presets: ['next/babel'],
   env: {

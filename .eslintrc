@@ -111,6 +111,7 @@
     "no-else-return": 0,
     "allowDeclarations": 0,
     "spaced-comment": 0, /* allow css highlighting in template literal by switching this off */
-    "import/no-named-as-default": 0 //  I prefer naming as default to imply main method.
+    "import/no-named-as-default": 0, //  I prefer naming as default to imply main method.
+    "import/no-named-as-default-member": 0
   }
 }

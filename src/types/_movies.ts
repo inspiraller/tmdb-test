@@ -24,6 +24,9 @@ export interface PropsMovieLight {
   popularity: number;
   vote_average: number;
   custom_full_poster_path: string;
+  genre_ids: number[];
+  overview: string;
+  release_date: string;
 }
 
 export interface PropsMovieGenre {

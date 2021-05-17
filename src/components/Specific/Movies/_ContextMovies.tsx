@@ -19,6 +19,10 @@ export interface PropsContext {
       set: TAnyHook;
     };
   };
+  page: number,
+  setPage: TAnyHook,
+  maxPerPage: number,
+  setMaxPerPage: TAnyHook
 }
 const placeholder = {
   movies: [],
@@ -35,7 +39,11 @@ const placeholder = {
     vote_average: {
       set: () => {}
     }
-  }
+  },
+  page: 1,
+  setPage: () => {},
+  maxPerPage: 20,
+  setMaxPerPage: () => {}
 };
 
 export const ContextMovies = React.createContext<PropsContext>(placeholder);
@@ -45,6 +53,8 @@ export const ProviderMovies: React.FC = ({ children }) => {
   const [popularity, setPopularity] = useState<boolean>();
   const [vote_average, setvote_average] = useState<boolean>();
   const [title, setTitle] = useState<boolean>();
+  const [page, setPage] = useState<number>(placeholder.page);
+  const [maxPerPage, setMaxPerPage] = useState<number>(placeholder.maxPerPage);
   return (
     <ContextMovies.Provider
       value={{
@@ -63,7 +73,11 @@ export const ProviderMovies: React.FC = ({ children }) => {
             asc: vote_average,
             set: setvote_average
           }
-        }
+        },
+        page,
+        setPage,
+        maxPerPage,
+        setMaxPerPage
       }}
     >
       {children}

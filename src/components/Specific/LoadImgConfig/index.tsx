@@ -1,9 +1,6 @@
 import React, { FC, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ApplicationState } from 'src/store/config/rootReducer';
-import at from 'src/store/data/movies/actionTypes';
 import axios, { AxiosResponse } from 'axios';
-import { PropsImgConfig } from 'src/types';
+import useImgConfig from 'src/store/data/movies/useImgConfig';
 
 /* eslint-disable prefer-destructuring */
 const api_key = process.env.api_key;
@@ -18,19 +15,8 @@ const axGetImgConfig: TaxGetImgConfig = () => {
   });
 };
 
-const useMovieImgConfig = () => {
-  const dispatch = useDispatch();
-  const acGetImgConfig = (img_config: PropsImgConfig) =>
-    dispatch({
-      type: at.GET_MOVIE_IMG_CONFIG,
-      img_config
-    });
-  const img_config = useSelector((state: ApplicationState) => state.movies?.img_config);
-  return { img_config, acGetImgConfig };
-};
-
 const LoadImgConfig: FC = ({ children }) => {
-  const { img_config, acGetImgConfig } = useMovieImgConfig();
+  const { img_config, acGetImgConfig } = useImgConfig();
   useEffect(() => {
     if (!img_config) {
       axGetImgConfig().then((res) => {

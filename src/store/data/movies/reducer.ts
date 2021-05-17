@@ -14,6 +14,11 @@ const reducer = (state: PropsInitial = initialState, action: AnyAction): PropsIn
         ...state,
         img_config: action.img_config
       };
+    case at.POPULATE_TOTAL_MOVIES_SHOWING:
+      return {
+        ...state,
+        movie_list: action.movie_list
+      };
     default:
       return state;
   }

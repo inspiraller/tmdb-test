@@ -1,33 +1,28 @@
 import React, { FC } from 'react';
+import { Table, Header } from 'semantic-ui-react';
 import { PropsMovieLight } from 'src/types';
 import { ContextMovies } from '../_ContextMovies';
 
-interface PropsRenderVal {
-  title: string;
-  keyName: keyof PropsMovieLight;
-  val: string | number;
-}
-
-const RenderVal: FC<PropsRenderVal> = ({ title, keyName, val }) =>
-  keyName !== 'custom_full_poster_path' ? <> {val}</> : <img src={val as string} alt={title} />;
-
 const TBody: FC = () => {
-  const { movies } = React.useContext(ContextMovies);
+  const { movies, maxPerPage, page } = React.useContext(ContextMovies);
+  const end = 1 + maxPerPage * page + 1;
+  const start = end - maxPerPage;
   return (
     <tbody>
-      {movies.map((item: PropsMovieLight) => (
+      {movies.slice(start, end).map((item: PropsMovieLight) => (
         <tr key={`movie-id-${item.id}`}>
-          {Object.keys(item).map((key) => (
-            <td key={`movie-id-${item.id}-prop-${key}`}>
-              <RenderVal
-                {...{
-                  title: item.title,
-                  keyName: key as keyof PropsMovieLight,
-                  val: item[key as keyof typeof item]
-                }}
-              />
-            </td>
-          ))}
+          <Table.Cell verticalAlign="top">
+            <img src={item.custom_full_poster_path as string} alt={item.title} />
+          </Table.Cell>
+          <Table.Cell verticalAlign="top">
+            <Header as="h2">{item.title}</Header>
+            <p>{item.overview}</p>
+            <em>
+              <strong>Release date:</strong> {new Date(item.release_date).toLocaleDateString()}
+            </em>
+          </Table.Cell>
+          <Table.Cell>{item.popularity}</Table.Cell>
+          <Table.Cell>{item.vote_average}</Table.Cell>
         </tr>
       ))}
     </tbody>

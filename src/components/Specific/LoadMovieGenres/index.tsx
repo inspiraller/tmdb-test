@@ -1,9 +1,7 @@
 import React, { FC, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { ApplicationState } from 'src/store/config/rootReducer';
-import at from 'src/store/data/movies/actionTypes';
 import axios, { AxiosResponse } from 'axios';
 import { PropsMovieGenre } from 'src/types';
+import useMovieGenres from 'src/store/data/movies/useMovieGenres';
 
 /* eslint-disable prefer-destructuring */
 const api_key = process.env.api_key;
@@ -14,18 +12,6 @@ const axGetGenres: TaxGetGenres = () => {
     url: `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}&language=en-US`,
     method: 'GET'
   });
-};
-
-const useMovieGenres = () => {
-  const dispatch = useDispatch();
-  const acGetGenres = (genres: PropsMovieGenre[]) => {
-    dispatch({
-      type: at.GET_MOVIE_GENRES,
-      genres
-    });
-  };
-  const genres = useSelector((state: ApplicationState) => state.movies?.genres);
-  return { genres, acGetGenres };
 };
 
 const LoadMovieGenres: FC = ({ children }) => {

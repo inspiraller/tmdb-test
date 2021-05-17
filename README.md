@@ -1,7 +1,7 @@
 # Steps to startup
 ## git clone project locally
 ```
-git clone thisrepo
+git clone https://github.com/inspiraller/tmdb-test.git
 ```
 
 ## cd to directory
@@ -9,12 +9,12 @@ git clone thisrepo
 cd tmdb-test
 ```
 
-# login to tmdb to create api_key and put into .env file locally - see .env.example for reference
+# Sign up with TMDB - https://www.themoviedb.org/
+# to create api_key and put into .env file locally - see .env.example for reference
 **.env**
 ```
 # CREATE THIS FILE AS .env local to your project.
-api_key = YOUR API KEY CREATED FROM TMDB - https://www.themoviedb.org/
-api_read_access_token = OPTIONAL
+api_key = YOUR API KEY HERE...
 ```
 
 ## npm install and start
@@ -28,25 +28,27 @@ npm run dev
 http://localhost:3000
 ```
 
-# Steps to navigate site
+# What is happening on page load?
+- On page load will display all movies in show latest and load into redux
+- localstorage will populate and persist until cache is deleted
+- A default search on all the loaded movies will display with pagination
 
-- (click) - login
-- (click) - dropdown - and select options
-- (type - vote avg) - 4
-- (click) - search button
-- (view) - table of movies
-- (click - title) to sort
-- (click - vote average to sort
-- (click) - popularity to sort
+# How to search and filter
+- (click) the genre dropdown to select genres  you want to search
+- (type - vote avg) any number
+- (click) - search
+Will reset pagination to 1, and display results
 
-# Notes to self
-- This does not meet the brief as it does a search on all movies, not just latest showing.
-- This could be further extended to reduce those movies  based upon release date
-- Logic to load all the latest movies then filter on them from the client is not a good practice, since the logic to filter should be in one place - the backend to save duplication from other interfacing.
+# How to sort
+- (click) title - to sort and toggle between ascending or descending
+- (click) popularity - to sort and toggle between ascending or descending
+- (click) vote average - to sort and toggle between ascending or descending
 
+# how to paginate
+- (click) any number at the bottom to paginate
 
 # To run cypress tests - currently broken due to next.js webpack 5 implementation not working with cypress-webpack-preprocessor.
-1. After install just check this file out again
+1. After install just check this file out again - because cypress on first install resets the index file.
 ```
 git checkout cypress/plugins/index.js
 ```
@@ -63,32 +65,6 @@ npm run cypress
 
 done !
 
-########################################################################################
-# todo....
-# storybook and jest/enzyme -
-All tests will be utilising components declared in storybook to make it clearer what has been tested and what hasn't
+# How to run sonar
+- Follow instructions in sonar/ folder
 
-# run storybook to look at components that have been tested
-```
-npm run storybook
-```
-
-# run jest enzyme tests to see tests run
-```
-npm test
-```
-
-# run test with coverage - combining coverage from jest and cypress into 1
-```
-npm run coverage
-```
-# npm run sonar - to see collated coverage
-- first follow instructs to run local sonar server - sonar/
-- Then run sonar
-```
-npm run sonar
-```
-
-view coverage report and code quality 
-
-done!!

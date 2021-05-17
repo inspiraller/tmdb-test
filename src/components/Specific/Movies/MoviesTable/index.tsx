@@ -8,7 +8,7 @@ const MoviesTable: FC = () => {
   const { movies } = React.useContext(ContextMovies);
 
   return movies.length ? (
-    <Table sortable>
+    <Table sortable striped>
       <THead />
       <TBody />
     </Table>

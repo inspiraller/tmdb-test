@@ -13,7 +13,7 @@ const initStore = (preloadedState: ApplicationState = loadState()) =>
 
 export const initializeStore = (preloadedState: ApplicationState = {}) => {
   /*eslint-disable no-underscore-dangle */
-  let _store: Tstore = store ?? initStore(preloadedState);
+  let _store: Tstore = store ?? initStore(preloadedState); // <!- Can mock data here for test purposes....
 
   if (preloadedState && store) {
     _store = initStore({
