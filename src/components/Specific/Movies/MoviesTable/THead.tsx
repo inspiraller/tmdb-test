@@ -22,7 +22,6 @@ const THead: FC = () => {
   // TODO: sort maybe better localised to Thead
   const { movies, setMovies, sort } = React.useContext(ContextMovies);
   type Tkey = keyof typeof sort;
-  const movie0 = movies[0];
 
   const resetTogglers = useCallback(() => {
     Object.keys(sort).forEach((sortTogglerName) => {

@@ -11,8 +11,10 @@ const useMovieList = () => {
       movie_list
     });
   };
-  const movie_list = useSelector((state: ApplicationState) => state.movies?.movie_list);
-  return { movie_list, acPopulateMoviesShowing };
+  return {
+    movie_list: useSelector((state: ApplicationState) => state.movies?.movie_list),
+    acPopulateMoviesShowing
+  };
 };
 
 export default useMovieList;

@@ -11,7 +11,7 @@ import useMovieList from 'src/store/data/movies/useMovieList';
 /* eslint-disable prefer-destructuring */
 const api_key = process.env.api_key;
 
-export const ENDPOINT_GET_MOVIES_SHOWING = `https://api.themoviedb.org/3/configuration`;
+export const ENDPOINT_GET_MOVIES_SHOWING = `https://api.themoviedb.org/3/movie/now_playing`;
 
 export type PropsAxiosGetMoviesShowing = AxiosResponse<{
   page: number;

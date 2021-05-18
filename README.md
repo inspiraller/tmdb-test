@@ -46,8 +46,16 @@ Will reset pagination to 1, and display results
 
 # how to paginate
 - (click) any number at the bottom to paginate
+-------------------------------------------------------------------------------------
+# Testing
 
-# To run cypress tests - currently broken due to next.js webpack 5 implementation not working with cypress-webpack-preprocessor.
+### To run enzyme test
+- Note more tests to write...
+```
+npm run test
+```
+
+### To run cypress tests
 1. After install just check this file out again - because cypress on first install resets the index file.
 ```
 git checkout cypress/plugins/index.js
@@ -63,8 +71,24 @@ npm run dev
 npm run cypress
 ```
 
+### Look at cypress test cases - written in cucumber style.
+- Note - more tests to write...
+cypress/integration/features/movies.feature
+- example
+```cucumber
+Feature: Movies
+  Scenario: Homepage redirects to /movies
+    Given I'm at homepage
+    Then I redirect to url '/movies/'
+```
+
 done !
 
-# How to run sonar
+# How to run sonar to check code quality and complexity
 - Follow instructions in sonar/ folder
+- then - as long as you have generated coverage with tests run sonar -
+```
+npm run sonar
+```
+
 

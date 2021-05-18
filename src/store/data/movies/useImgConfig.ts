@@ -10,7 +10,9 @@ const useImgConfig = () => {
       type: at.GET_MOVIE_IMG_CONFIG,
       img_config
     });
-  const img_config = useSelector((state: ApplicationState) => state.movies?.img_config);
-  return { img_config, acGetImgConfig };
+  return {
+    img_config: useSelector((state: ApplicationState) => state.movies?.img_config),
+    acGetImgConfig
+  };
 };
 export default useImgConfig;

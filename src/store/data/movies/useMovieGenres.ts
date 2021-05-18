@@ -11,8 +11,7 @@ const useMovieGenres = () => {
       genres
     });
   };
-  const genres = useSelector((state: ApplicationState) => state?.movies?.genres);
-  return { genres, acGetGenres };
+  return { genres: useSelector((state: ApplicationState) => state?.movies?.genres), acGetGenres };
 };
 
 export default useMovieGenres;

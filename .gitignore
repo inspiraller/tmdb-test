@@ -44,3 +44,4 @@ reports
 test-report.xml
 coverage-ts
 cypress.env.json
+.nyc_output
