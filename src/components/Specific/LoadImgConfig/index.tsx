@@ -1,16 +1,22 @@
 import React, { FC, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import useImgConfig from 'src/store/data/movies/useImgConfig';
+import { PropsImgConfig } from 'src/types';
 
 /* eslint-disable prefer-destructuring */
 const api_key = process.env.api_key;
 
-type TaxGetImgConfig = () => Promise<
-  AxiosResponse<{ images: { base_url: string; poster_sizes: string[] } }>
->;
+export const ENDPOINT_GET_IMG_CONFIG = `https://api.themoviedb.org/3/configuration`;
+
+export type PropsAxiosGetImgConfig = AxiosResponse<{
+  images: { base_url: string; poster_sizes: string[] };
+}>;
+
+type TaxGetImgConfig = () => Promise<PropsAxiosGetImgConfig>;
+
 const axGetImgConfig: TaxGetImgConfig = () => {
   return axios({
-    url: `https://api.themoviedb.org/3/configuration?api_key=${api_key}`,
+    url: `${ENDPOINT_GET_IMG_CONFIG}?api_key=${api_key}`,
     method: 'GET'
   });
 };

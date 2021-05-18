@@ -5,7 +5,7 @@ import { ContextMovies } from '../_ContextMovies';
 
 const TBody: FC = () => {
   const { movies, maxPerPage, page } = React.useContext(ContextMovies);
-  const end = 1 + maxPerPage * page + 1;
+  const end = 1 + maxPerPage * page;
   const start = end - maxPerPage;
   return (
     <tbody>

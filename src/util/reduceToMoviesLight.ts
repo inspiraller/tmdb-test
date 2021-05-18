@@ -9,7 +9,7 @@ const reduceToMoviesLight: TreduceToMoviesLight = (movies, img_config) =>
     title: item.title,
     popularity: item.popularity,
     vote_average: item.vote_average,
-    custom_full_poster_path: getCustomFullPosterPath(item.poster_path, img_config),
+    custom_full_poster_path: getCustomFullPosterPath(item.poster_path as string, img_config),
     genre_ids: item.genre_ids,
     overview: item.overview,
     release_date: item.release_date

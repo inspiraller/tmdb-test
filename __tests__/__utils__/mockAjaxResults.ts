@@ -2,12 +2,16 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 // export const getEndPointQs = (url: string, qs: string) => `${url}?${qs}`;
-export const getEndPointQs = (url: string) => RegExp(`${url}(\\?[\\w\\W]*)?`);
+export const getEndPointQs = (url: string) => {
+  const reg = RegExp(`${url}([\\?\\&][\\w\\W]*)?`);
+  console.log('reg = ', reg);
+  return reg;
+};
 
 export const mockAxios = new MockAdapter(axios);
 
 export const msTimeout = 100;
-export const hackWaitSagaAjaxReturn = () =>
+export const hackAwaitPromiseReturn = () =>
   new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve(); // hack to wait for saga to finish
@@ -18,7 +22,7 @@ export const getMockSuccess = <T>(url: string, mock: T) => {
   mockAxios.reset();
   // mockAxios.onGet(getEndPointQs(url, qs)).reply(200, mock);
   mockAxios.onGet(getEndPointQs(url)).reply((config) => {
-    // console.log('on success return mock............................................................');
+    console.log('$$$$$$$$$$$$$$$$ on success mock');
     return [200, mock];
   });
 };

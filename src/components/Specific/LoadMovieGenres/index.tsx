@@ -6,10 +6,14 @@ import useMovieGenres from 'src/store/data/movies/useMovieGenres';
 /* eslint-disable prefer-destructuring */
 const api_key = process.env.api_key;
 
-type TaxGetGenres = () => Promise<AxiosResponse<{ genres: PropsMovieGenre[] }>>;
+export const ENDPOINT_GET_GENRES = `https://api.themoviedb.org/3/genre/movie/list`;
+
+export type PropsAxiosGetGenres = AxiosResponse<{ genres: PropsMovieGenre[] }>;
+
+type TaxGetGenres = () => Promise<PropsAxiosGetGenres>;
 const axGetGenres: TaxGetGenres = () => {
   return axios({
-    url: `https://api.themoviedb.org/3/genre/movie/list?api_key=${api_key}&language=en-US`,
+    url: `${ENDPOINT_GET_GENRES}?api_key=${api_key}&language=en-US`,
     method: 'GET'
   });
 };

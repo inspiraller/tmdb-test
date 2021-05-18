@@ -16,6 +16,7 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   testRegex: '(\\.(test|spec))\\.[tj]sx?$',
+  setupFiles: ['jest/dotenv/config'],
   setupFilesAfterEnv: ['<rootDir>/jest/enzymeAdapter.ts'],
   preset: 'ts-jest',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
