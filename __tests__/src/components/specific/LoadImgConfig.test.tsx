@@ -1,12 +1,13 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { setupServer } from 'msw/node';
-import hackActUseEffects from '__tests__/__utils__/hackAct';
+import { hackActUseEffects } from '__tests__/__utils__/hackAct';
 import { Tstore, initializeStore } from 'src/store/config/getStore';
 import WrapProvider from '__tests__/__utils__/WrapProvider';
 import LoadImgConfig from 'src/components/Specific/LoadImgConfig';
-import { mswImgConfig } from '__tests__/axios';
-import mockImgConfig from '__tests__/axios/_mockImgConfig';
+import { mockImgConfig } from 'src/endpoints/imgConfig';
+
+import { mswImgConfig } from 'msw_mock_ajax/index';
 
 let wrapper: ReactWrapper<any, Readonly<{}>>;
 

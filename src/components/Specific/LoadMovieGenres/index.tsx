@@ -2,11 +2,10 @@ import React, { FC, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { PropsMovieGenre } from 'src/types';
 import useMovieGenres from 'src/store/data/movies/useMovieGenres';
+import { ENDPOINT_GET_GENRES } from 'src/endpoints/genres';
 
 /* eslint-disable prefer-destructuring */
 const api_key = process.env.api_key;
-
-export const ENDPOINT_GET_GENRES = `https://api.themoviedb.org/3/genre/movie/list`;
 
 export type PropsAxiosGetGenres = AxiosResponse<{ genres: PropsMovieGenre[] }>;
 

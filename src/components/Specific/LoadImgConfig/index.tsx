@@ -1,12 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import useImgConfig from 'src/store/data/movies/useImgConfig';
-import { PropsImgConfig } from 'src/types';
+import { ENDPOINT_GET_IMG_CONFIG } from 'src/endpoints/imgConfig';
 
 /* eslint-disable prefer-destructuring */
 const api_key = process.env.api_key;
-
-export const ENDPOINT_GET_IMG_CONFIG = `https://api.themoviedb.org/3/configuration`;
 
 export type PropsAxiosGetImgConfig = AxiosResponse<{
   images: { base_url: string; poster_sizes: string[] };

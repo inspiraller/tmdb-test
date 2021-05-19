@@ -1,6 +1,7 @@
 module.exports = {
   roots: ['<rootDir>'],
   moduleNameMapper: {
+    '^msw_mock_ajax/(.*)$': '<rootDir>/msw_mock_ajax/$1',
     '^src/(.*)$': '<rootDir>/src/$1',
     '^__tests__/(.*)$': '<rootDir>/__tests__/$1',
     '^Common/(.*)$': '<rootDir>/src/Components/Common/$1',

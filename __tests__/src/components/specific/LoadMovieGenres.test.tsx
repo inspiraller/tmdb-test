@@ -1,12 +1,12 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { setupServer } from 'msw/node';
-import hackActUseEffects from '__tests__/__utils__/hackAct';
+import { hackActUseEffects } from '__tests__/__utils__/hackAct';
 import { Tstore, initializeStore } from 'src/store/config/getStore';
 import WrapProvider from '__tests__/__utils__/WrapProvider';
 import LoadMovieGenres from 'src/components/Specific/LoadMovieGenres';
-import { mswGenres } from '__tests__/axios';
-import mockGenres from '__tests__/axios/_mockGenres';
+import { mswGenres } from 'msw_mock_ajax/index';
+import { mockGenres } from 'src/endpoints/genres';
 
 let wrapper: ReactWrapper<any, Readonly<{}>>;
 

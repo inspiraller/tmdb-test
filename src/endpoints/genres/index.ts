@@ -1,4 +1,6 @@
-const mockGenres = [
+export const ENDPOINT_GET_GENRES = `https://api.themoviedb.org/3/genre/movie/list`;
+
+export const mockGenres = [
   { id: 28, name: 'Action' },
   { id: 12, name: 'Adventure' },
   { id: 16, name: 'Animation' },
@@ -19,5 +21,3 @@ const mockGenres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' }
 ];
-
-export default mockGenres;

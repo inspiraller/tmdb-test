@@ -1,10 +1,22 @@
 // import Cypress from 'cypress'; <- this line was braking cypress - unable to get environment variables. Should be declared in cypress/tsconfig.js
 
-import { Before, Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
+import { After, Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
+import { setupWorker, SetupWorkerApi } from 'msw';
+import { mswAllHandlers } from '../../../msw_mock_ajax/index';
 
-import getScreen, { intHeight } from './util/getScreen';
+// import { interceptGenres, interceptLoadImgConfig, interceptLoadMovies } from './intercept/movies';
+// import getScreen, { intHeight } from './util/getScreen';
 import getSelectorProps from './util/getSelectorProps';
 import replaceVariables from './util/replaceVariables';
+
+// mock ajax data...
+let worker: SetupWorkerApi;
+
+After(() => {
+  if (worker) {
+    worker.stop();
+  }
+});
 
 type WaitXHR = Cypress.WaitXHR;
 type ObjectLike = Cypress.ObjectLike;
@@ -16,30 +28,31 @@ interface WaitXHRCustom {
 
 const root = '/';
 
-Before({ tags: '@NotDesktop' }, () => {
-  // Default is Desktop set in cypress.json
-  const intWidth = getScreen('NotDesktop');
-  // cy.task('log', `Before - screen intWidth = "${intWidth}"`);
-  cy.viewport(intWidth, intHeight);
+// cy.task does not work here...
+// instead going to use Given, because logging is useful
+// Before({ tags: '@mock-movies' }, () => {
+//   cy.task('log', 'Mock movie data');
+//   const genres = interceptGenres();
+//   const imgConfig = interceptLoadImgConfig();
+//   const movies1 = interceptLoadMovies('1');
+//   const movies2 = interceptLoadMovies('2');
+//   cy.wait([genres, imgConfig, movies1, movies2]);
+// });
+
+Given('All movie endpoints mocked', () => {
+  cy.task('log', 'Mock movie data');
+  worker = setupWorker(...mswAllHandlers());
+  worker.start();
+  // TODO - handle as msw...
+  // const genres = interceptGenres();
+  // const imgConfig = interceptLoadImgConfig();
+  // const movies1 = interceptLoadMovies('1');
+  // const movies2 = interceptLoadMovies('2');
+  // cy.wait([genres, imgConfig, movies1, movies2]);
 });
 
-Given(/I'm at homepage/, () => {
-  cy.visit(root);
-});
-Given(/I visit \'([^\']+)\'/, (url) => {
+When(/I visit \'([^\']+)\'/, (url) => {
   cy.visit(url);
-});
-Given(/I am logged out tmdb/, (url) => {
-  cy.visit('https://www.themoviedb.org/logout');
-});
-Given(/I login to TMDB/, (url) => {
-  const email = Cypress.env('email');
-  const password = Cypress.env('password');
-  cy.visit('https://www.themoviedb.org/login');
-
-  // should use this process.
-  // https://developers.themoviedb.org/3/authentication/validate-request-token
-  // to return
 });
 
 When(/I input \'([^\']+)\' with \'([^\']+)\'/, (strInputName, value) => {
@@ -75,6 +88,13 @@ Then(/element \'([^\']+)\' exists/, (strElem) => {
   } else {
     cy.get(strSelector).should('be.visible');
   }
+});
+Then(/element \'([^\']+)\' contains number/, (strElem) => {
+  cy.task('log', `element hello.... ${strElem}`);
+  const { strSelector } = getSelectorProps(strElem);
+  cy.get(strSelector).should(($elem) => {
+    expect($elem.get(0).innerText).to.match(/[0-9]/);
+  });
 });
 Then(/input \'([^\']+)\' is disabled/, (strInputName) => {
   const strSelector = `input[name="${strInputName}"]`;

@@ -1,7 +1,9 @@
 import { act } from 'react-dom/test-utils';
 import { ReactWrapper } from 'enzyme';
 
-const hackActUseEffects = async (wrapper: ReactWrapper<any, Readonly<{}>>) => {
+type TWrapper = ReactWrapper<any, Readonly<{}>>;
+
+export const hackActUseEffects = async (wrapper: TWrapper) => {
   await new Promise((resolve) => setImmediate(resolve));
   await act(
     () =>
@@ -9,7 +11,14 @@ const hackActUseEffects = async (wrapper: ReactWrapper<any, Readonly<{}>>) => {
         resolve();
       })
   );
-  wrapper.update();
+  // wrapper.update();
 };
 
-export default hackActUseEffects;
+export const hackActChildrenUseEffects = async (wrapper: TWrapper) => {
+  await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 50); // number reflective of movies being reduced. 1 page of 20 === 10,
+  });
+  wrapper.update();
+};

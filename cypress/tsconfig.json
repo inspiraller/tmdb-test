@@ -4,7 +4,7 @@
     "noEmit": true,
     // be explicit about types included
     // to avoid clashing with Jest types
-    "typeRoots": ["cypress", "./@types"]
+    "typeRoots": ["cypress", "./@types", "@types/node"]
   },
   "include": [
     "../node_modules/cypress",

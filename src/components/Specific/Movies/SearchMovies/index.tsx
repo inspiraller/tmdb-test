@@ -11,7 +11,7 @@ import { ContextMovies } from '../_ContextMovies';
 
 type ThandleInputChange = (_: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void;
 
-const ButtonSearchMovies: FC = () => {
+const SearchMovies: FC = () => {
   const { setMovies, setPage } = useContext(ContextMovies);
   const [genres, setGenres] = useState<string[]>([]);
   const [voteAvg, setVoteAvg] = useState<string>('');
@@ -81,4 +81,4 @@ const ButtonSearchMovies: FC = () => {
   );
 };
 
-export default ButtonSearchMovies;
+export default SearchMovies;

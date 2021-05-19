@@ -27,11 +27,14 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
+      "msw_mock_ajax/*": [
+        "msw_mock_ajax/*"
+      ],
       "src/*": [
         "src/*"
       ],
       "Common/*": [
-        "src/Components/Common/*"
+        "src/components/Common/*"
       ],
       "__tests__/*": [
         "__tests__/*"
@@ -55,7 +58,8 @@
   "include": [
     "src/**/*",
     "@types",
-    "__tests__"
+    "__tests__",
+    "msw_mock_ajax"
   ],
   "exclude": [
     "./node_modules/**/*",

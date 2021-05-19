@@ -5,7 +5,8 @@ module.exports = (on, config) => {
   // https://github.com/cypress-io/cypress-browserify-preprocessor
   const browserifyOptions = {
     ...browserify.defaultOptions,
-    typescript: require.resolve('typescript')
+    typescript: require.resolve('typescript'),
+    basedir: '../../' // to enable paths
   };
   const brow = browserify(browserifyOptions);
   const cuc = cucumber(browserifyOptions);

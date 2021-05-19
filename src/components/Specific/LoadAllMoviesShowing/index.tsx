@@ -7,11 +7,7 @@ import { PropsImgConfig, PropsMovie, PropsMovieLight } from 'src/types';
 import { ApplicationState } from 'src/store/config/rootReducer';
 import reduceToMoviesLight from 'src/util/reduceToMoviesLight';
 import useMovieList from 'src/store/data/movies/useMovieList';
-
-/* eslint-disable prefer-destructuring */
-const api_key = process.env.api_key;
-
-export const ENDPOINT_GET_MOVIES_SHOWING = `https://api.themoviedb.org/3/movie/now_playing`;
+import { ENDPOINT_GET_MOVIES_SHOWING, ENDPOINT_QS } from 'src/endpoints/movie_list';
 
 export type PropsAxiosGetMoviesShowing = AxiosResponse<{
   page: number;
@@ -22,7 +18,7 @@ export type PropsAxiosGetMoviesShowing = AxiosResponse<{
 type TaxGetAllShowing = (pg?: number) => Promise<PropsAxiosGetMoviesShowing>;
 const axGetAllShowing: TaxGetAllShowing = (pg = 1) => {
   return axios({
-    url: `${ENDPOINT_GET_MOVIES_SHOWING}?api_key=${api_key}&language=en-US&page=${pg}`,
+    url: `${ENDPOINT_GET_MOVIES_SHOWING}${ENDPOINT_QS}&page=${pg}`,
     method: 'GET'
   });
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { Pagination, Icon } from 'semantic-ui-react';
 import { ContextMovies } from '../_ContextMovies';
 
-const PaginationExampleCompact = () => {
+const MoviesPagination = () => {
   const { movies, maxPerPage, page, setPage } = React.useContext(ContextMovies);
   const totalPages = Math.ceil(movies.length / maxPerPage);
 
@@ -26,4 +26,4 @@ const PaginationExampleCompact = () => {
   );
 };
 
-export default PaginationExampleCompact;
+export default MoviesPagination;

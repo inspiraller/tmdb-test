@@ -1,12 +1,10 @@
-type getSelectorProps = (
-  strElem: string
-) => {
+type getSelectorProps = (strElem: string) => {
   strSelector: string;
   strPseudoKey: string;
   strPseudoValue: string;
 };
 
-const getSelectorProps: getSelectorProps = strElem => {
+const getSelectorProps: getSelectorProps = (strElem) => {
   const indColon = strElem.indexOf(':');
   const indEndSel = indColon !== -1 ? indColon : strElem.length;
   // cy.task('log', `##### indEndSel= "${indEndSel}"`);

@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -9,11 +10,10 @@
 // ***********************************************
 
 // debugging 2 of 2
-// Cypress.Commands.overwrite('log', (subject, message, msg2, msg3) =>
-//   cy.task('log', message, msg2, msg3)
-// );
+Cypress.Commands.overwrite('log', (msg) => {
+  cy.task('log', msg);
+});
 
-//
 // -- This is a parent command --
 // Cypress.Commands.add("login", (email, password) => { ... })
 //

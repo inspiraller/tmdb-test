@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { PropsMovieLight, TAnyHook } from 'src/types';
 
 export type TsetMovies = React.Dispatch<React.SetStateAction<PropsMovieLight[]>>;
+
 export interface PropsContext {
-  movies: PropsMovieLight[] | [];
+  movies: PropsMovieLight[] | never[];
   setMovies: TsetMovies;
   sort: {
     title: {
@@ -19,10 +20,10 @@ export interface PropsContext {
       set: TAnyHook;
     };
   };
-  page: number,
-  setPage: TAnyHook,
-  maxPerPage: number,
-  setMaxPerPage: TAnyHook
+  page: number;
+  setPage: TAnyHook;
+  maxPerPage: number;
+  setMaxPerPage: TAnyHook;
 }
 const placeholder = {
   movies: [],
@@ -49,10 +50,10 @@ const placeholder = {
 export const ContextMovies = React.createContext<PropsContext>(placeholder);
 
 export const ProviderMovies: React.FC = ({ children }) => {
-  const [movies, setMovies] = useState<PropsMovieLight[] | []>([]);
-  const [popularity, setPopularity] = useState<boolean>();
-  const [vote_average, setvote_average] = useState<boolean>();
-  const [title, setTitle] = useState<boolean>();
+  const [movies, setMovies] = useState<PropsMovieLight[] | never[]>([]);
+  const [popularity, setPopularity] = useState<boolean>(false);
+  const [vote_average, setvote_average] = useState<boolean>(false);
+  const [title, setTitle] = useState<boolean>(false);
   const [page, setPage] = useState<number>(placeholder.page);
   const [maxPerPage, setMaxPerPage] = useState<number>(placeholder.maxPerPage);
   return (

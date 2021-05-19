@@ -1,4 +1,5 @@
 Feature: Movies
-  Scenario: Homepage redirects to /movies
-    Given I'm at homepage
-    Then I redirect to url '/movies/'
+  Scenario: Load movies page with mock data and pre-render movies-count with number
+    Given All movie endpoints mocked
+    When I visit '/movies'
+    Then element '[data-testid="movies-count"]' contains number
