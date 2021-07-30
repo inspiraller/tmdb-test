@@ -11,6 +11,8 @@ import { ContextMovies } from '../_ContextMovies';
 
 type ThandleInputChange = (_: React.ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => void;
 
+const dataTestIdVoteAvg = 'movies-vote-avg';
+
 const SearchMovies: FC = () => {
   const { setMovies, setPage } = useContext(ContextMovies);
   const [genres, setGenres] = useState<string[]>([]);
@@ -67,6 +69,7 @@ const SearchMovies: FC = () => {
           style={{ width: '400px' }}
         />
         <Input
+          data-testid={dataTestIdVoteAvg}
           label={{ basic: true, content: text('vote avg') }}
           labelPosition="right"
           placeholder={text('avg')}

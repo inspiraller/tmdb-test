@@ -22,6 +22,7 @@ export interface Props {
   style?: {
     [key: string]: string;
   };
+  dataTestid: string;
 }
 
 const Dropdown: FC<Props> = ({
@@ -31,7 +32,8 @@ const Dropdown: FC<Props> = ({
   Options,
   handleChange,
   disabled,
-  style
+  style,
+  dataTestid
 }) => {
   return (
     <SemanticDropdown
@@ -47,6 +49,7 @@ const Dropdown: FC<Props> = ({
       multiple
       compact
       style={style}
+      data-testid={dataTestid}
     />
   );
 };

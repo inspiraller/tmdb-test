@@ -14,7 +14,7 @@ const TBody: FC = () => {
           <Table.Cell verticalAlign="top">
             <img src={item.custom_full_poster_path as string} alt={item.title} />
           </Table.Cell>
-          <Table.Cell verticalAlign="top">
+          <Table.Cell verticalAlign="top" style={{ width: '400px' }}>
             <Header as="h2">{item.title}</Header>
             <p>{item.overview}</p>
             <em>

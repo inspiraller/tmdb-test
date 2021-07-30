@@ -11,6 +11,8 @@ interface Props {
   };
 }
 
+export const dataTestid = 'movies-dropdown';
+
 const DropdownMovieGenres: FC<Props> = ({ handleChange, style }) => {
   const genres = useSelector((state: ApplicationState) => state.movies?.genres);
   const Options = genres
@@ -23,6 +25,7 @@ const DropdownMovieGenres: FC<Props> = ({ handleChange, style }) => {
   return (
     <Dropdown
       {...{
+        dataTestid,
         name: 'genre',
         label: text('genre'),
         defaultValue: '',

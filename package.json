@@ -37,6 +37,7 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@svgr/webpack": "^5.5.0",
     "@testing-library/cypress": "^7.0.6",
+    "@testing-library/user-event": "^13.1.9",
     "@types/cypress-cucumber-preprocessor": "^4.0.0",
     "@types/enzyme": "^3.10.8",
     "@types/enzyme-adapter-react-16": "^1.0.6",
