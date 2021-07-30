@@ -9,4 +9,8 @@ export type TLitVal = string | number | boolean | undefined;
 
 export type TAnyTestFunc = (payload: any) => void;
 
+// export type TAnyHookResult = React.Dispatch<React.SetStateAction<TLitVal | undefined>> | TAnyTestFunc;
+
+// export type THookFunc = (payload: TLitVal | TJson | undefined) => TLitVal | TJson | undefined;
+
 export type TAnyHook = React.Dispatch<React.SetStateAction<TLitVal | undefined>> | TAnyTestFunc;
