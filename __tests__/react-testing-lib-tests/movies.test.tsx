@@ -16,7 +16,9 @@ describe('<PageMovies>', () => {
         <PageMovies />
       </WrapProvider>
     );
-    await waitFor(() => screen.getByTestId(dataTestIdMoviesCount));
+    await waitFor(
+      () => screen.getByTestId(dataTestIdMoviesCount) && screen.getByTestId(dataTestidDropdown)
+    );
   });
   describe('onload', () => {
     it('Should have search results', () => {

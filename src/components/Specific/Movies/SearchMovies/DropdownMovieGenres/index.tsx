@@ -14,6 +14,7 @@ interface Props {
 export const dataTestid = 'movies-dropdown';
 
 const DropdownMovieGenres: FC<Props> = ({ handleChange, style }) => {
+  console.log('DropdownMovieGenres hello render -');
   const genres = useSelector((state: ApplicationState) => state.movies?.genres);
   const Options = genres
     ? genres.map((item) => ({

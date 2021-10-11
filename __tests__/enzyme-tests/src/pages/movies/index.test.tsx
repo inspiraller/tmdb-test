@@ -66,7 +66,7 @@ describe('Movies', () => {
     });
     describe('Loaded omponents - contents - preload search data', () => {
       it('should contain: component - data-testid === movies-count with a number result', async () => {
-        await hackActChildrenUseEffects(wrapper);
+        const result = await hackActChildrenUseEffects(wrapper);
         const text = wrapper.find(selMoviesCount).text();
         expect(text.search(/ [1-9]/) !== -1).toBe(true);
       });

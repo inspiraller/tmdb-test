@@ -35,22 +35,24 @@ const Dropdown: FC<Props> = ({
   style,
   dataTestid
 }) => {
+  // div only becavuse dataTestId does not exist on semanticDropdown
   return (
-    <SemanticDropdown
-      name={name}
-      placeholder={label}
-      fluid
-      search
-      selection
-      options={Options}
-      defaultValue={defaultValue || undefined}
-      onChange={handleChange}
-      disabled={disabled}
-      multiple
-      compact
-      style={style}
-      data-testid={dataTestid}
-    />
+    <div data-testid={dataTestid}>
+      <SemanticDropdown
+        name={name}
+        placeholder={label}
+        fluid
+        search
+        selection
+        options={Options}
+        defaultValue={defaultValue || undefined}
+        onChange={handleChange}
+        disabled={disabled}
+        multiple
+        compact
+        style={style}
+      />
+    </div>
   );
 };
 
