@@ -52,7 +52,9 @@ Given('All movie endpoints mocked', () => {
 });
 
 When(/I visit \'([^\']+)\'/, (url) => {
+  cy.intercept(url).as('visit');
   cy.visit(url);
+  cy.wait('@visit');
 });
 
 When(/I input \'([^\']+)\' with \'([^\']+)\'/, (strInputName, value) => {
@@ -72,6 +74,13 @@ When(/I click( (element|link|button|submit))? \'([^\']+)\'/, (_, strElem) => {
     cy.get(strSelector).click();
   }
 });
+// to try
+// When(/I select dropdown \'([^\']+)\' option \'([^\']+)\'/, (strElemDropdown, strOption) => {
+//   const { strSelector } = getSelectorProps(strElemDropdown);
+//   // cy.task('log', `strSelector="${strSelector}"`);
+//   cy.get(strSelector).click();
+//   cy.get(`${strSelector} [role="option"]' span`).contains(strOption).click();
+// });
 Then(/element \'([^\']+)\' exists/, (strElem) => {
   const { strSelector, strPseudoKey, strPseudoValue } = getSelectorProps(strElem);
   // cy.task('log', 'element exists() ');
@@ -106,10 +115,10 @@ Then(/I redirect to url \'([^\']+)\'/, (strUrl) => {
   //   cy.task('log', `location href="${loc.href}"`);
   // });
   if (strUrl.indexOf('/') === 0) {
-    // cy.task('log', `location pathname should be="${strUrl}"`);
+    cy.task('log', `location pathname should be="${strUrl}"`);
     cy.location('pathname').should('eq', strUrl);
   } else {
-    // cy.task('log', `location should be="${strUrl}"`);
+    cy.task('log', `location should be="${strUrl}"`);
     cy.location().should('contain', strUrl); // to test - use contain so exclude querystring
   }
 });

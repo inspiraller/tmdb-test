@@ -11,6 +11,8 @@ interface Props {
   };
 }
 
+const label = text('genre');
+export const dataTestLabel = label;
 export const dataTestid = 'movies-dropdown';
 
 const DropdownMovieGenres: FC<Props> = ({ handleChange, style }) => {
@@ -27,12 +29,9 @@ const DropdownMovieGenres: FC<Props> = ({ handleChange, style }) => {
       {...{
         dataTestid,
         name: 'genre',
-        label: text('genre'),
+        label,
         defaultValue: '',
         handleChange,
-        // handleChange: (evt, data) => {
-        //   console.log("data =", data.value); // Genre[];
-        // },
         Options,
         style
       }}

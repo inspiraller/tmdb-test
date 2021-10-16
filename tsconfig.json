@@ -59,8 +59,7 @@
     "src/**/*",
     "@types",
     "__tests__",
-    "msw_mock_ajax"
-  ],
+    "msw_mock_ajax"],
   "exclude": [
     "./node_modules/**/*",
     "archive/*",

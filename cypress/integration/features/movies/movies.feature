@@ -3,3 +3,8 @@ Feature: Movies
     Given All movie endpoints mocked
     When I visit '/movies'
     Then element '[data-testid="movies-count"]' contains number
+
+# to try ...
+  # Scenario: Select genre from dropdown
+  #   When I select dropdown '[name="genre"]' option 'Action'
+  #   Then element '[name="genre"] > ui label[value="28"]' exists

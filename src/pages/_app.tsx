@@ -1,5 +1,6 @@
 import React, { FC, ComponentType } from 'react';
 import { Provider } from 'react-redux';
+import { CypressHistorySupport } from 'cypress-react-router';
 import { saveState } from 'src/store/config/persist';
 import { ApplicationState } from 'src/store/config/rootReducer';
 import { useStore } from '../store/config/getStore';
@@ -18,6 +19,7 @@ const App: FC<Props> = ({ Component, pageProps }) => {
   });
   return (
     <Provider store={store}>
+      <CypressHistorySupport />
       <Component {...pageProps} />
     </Provider>
   );

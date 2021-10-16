@@ -35,7 +35,7 @@ const Dropdown: FC<Props> = ({
   style,
   dataTestid
 }) => {
-  // div only becavuse dataTestId does not exist on semanticDropdown
+  // div only because dataTestId does not exist on semanticDropdown
   return (
     <div data-testid={dataTestid}>
       <SemanticDropdown
