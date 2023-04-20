@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen, within, configure } from '@testing-library/react';
+
 // import userEvent from '@testing-library/user-event';
 
 import '@testing-library/jest-dom/extend-expect';
@@ -23,6 +24,7 @@ const renderWait = async () => {
       <PageMovies />
     </WrapProvider>
   );
+
   await waitFor(
     () => screen.getByText(/search results: 40/i) // screen.getByTestId(dataTestIdMoviesCount) && screen.getByTestId(dataTestidDropdown)
   );

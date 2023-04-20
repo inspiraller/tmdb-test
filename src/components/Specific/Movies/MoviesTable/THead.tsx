@@ -2,17 +2,11 @@ import React, { FC, useCallback } from 'react';
 import { PropsMovieLight } from 'src/types';
 import { Table } from 'semantic-ui-react';
 import { ContextMovies } from '../_ContextMovies';
+import { headings, TCol, TsortType, updateSortTypes } from '../SearchMovies/sort';
+
 import sortKey from './sortTh';
 
 const capitalise = (str: string) => `${str.substring(0, 1).toUpperCase()}${str.substr(1)}`;
-
-const headings = {
-  title: 'Title',
-  popularity: 'Propularity',
-  vote_average: 'Vote Average',
-  custom_full_poster_path: 'Poster',
-  genre_ids: 'Genres'
-};
 
 const getTh = (key: keyof typeof headings): string => {
   return headings[key];
@@ -20,45 +14,66 @@ const getTh = (key: keyof typeof headings): string => {
 
 const THead: FC = () => {
   // TODO: sort maybe better localised to Thead
-  const { movies, setMovies, sort } = React.useContext(ContextMovies);
-  type Tkey = keyof typeof sort;
+  const { movies, setMovies, arrSortTypes, setArrSortTypes } = React.useContext(ContextMovies);
+  // type Tkey = keyof typeof sort;
 
-  const resetTogglers = useCallback(() => {
-    Object.keys(sort).forEach((sortTogglerName) => {
-      sort[sortTogglerName as Tkey].set(undefined);
+  // const resetTogglers = useCallback(() => {
+  //   Object.keys(sort).forEach((sortTogglerName) => {
+  //     sort[sortTogglerName as Tkey].set(undefined);
+  //   });
+  // }, []);
+
+  const handleToggle = (evt: React.KeyboardEvent, keyName: TCol) => {
+    const isShift = evt.shiftKey;
+
+    let sortType: TsortType = 'number';
+    if (keyName === 'title' || keyName === 'release_date') {
+      sortType = 'string';
+    }
+
+    const arrSortTypesUpdated = updateSortTypes({
+      col: keyName,
+      arrSortTypes,
+      shiftKey: isShift,
+      sortType
     });
-  }, []);
-
-  const handleToggle = (keyName: 'title' | 'popularity' | 'vote_average') => {
-    const sortType = keyName !== 'title' ? 'number' : 'string';
-    resetTogglers();
-    const toggleItem = sort[keyName];
-    toggleItem.set(!toggleItem.asc);
-    setMovies(sortKey<PropsMovieLight>(movies, keyName, toggleItem.asc, sortType));
+    setArrSortTypes(arrSortTypesUpdated);
   };
 
   const getSorted = (key: string) => {
-    const asc = sort[key as keyof typeof sort]?.asc;
-    const direction = asc ? 'ascending' : 'descending';
-    return asc !== undefined ? direction : undefined;
+    const objSort = arrSortTypes.find((item) => item.col === key);
+    const dir = objSort?.dir;
+    if (dir) {
+      return dir === 'asc' ? 'ascending' : 'descending';
+    }
+    return undefined;
   };
 
   return movies.length ? (
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>Poster</Table.HeaderCell>
-        <Table.HeaderCell sorted={getSorted('title')} onClick={() => handleToggle('title')}>
+        <Table.HeaderCell
+          sorted={getSorted('title')}
+          onClick={(evt: React.KeyboardEvent) => handleToggle(evt, 'title')}
+        >
           Title
         </Table.HeaderCell>
         <Table.HeaderCell
+          sorted={getSorted('release_date')}
+          onClick={(evt: React.KeyboardEvent) => handleToggle(evt, 'release_date')}
+        >
+          Release
+        </Table.HeaderCell>
+        <Table.HeaderCell
           sorted={getSorted('popularity')}
-          onClick={() => handleToggle('popularity')}
+          onClick={(evt: React.KeyboardEvent) => handleToggle(evt, 'popularity')}
         >
           Popularity
         </Table.HeaderCell>
         <Table.HeaderCell
           sorted={getSorted('vote_average')}
-          onClick={() => handleToggle('vote_average')}
+          onClick={(evt: React.KeyboardEvent) => handleToggle(evt, 'vote_average')}
         >
           Vote Average
         </Table.HeaderCell>

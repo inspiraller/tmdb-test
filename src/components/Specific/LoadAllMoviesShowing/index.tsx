@@ -28,9 +28,14 @@ const axGetTotalShowing = async (
   img_config: PropsImgConfig
 ) => {
   const resp = await axGetAllShowing(1);
+
+  // debug msw
+  // console.log('AFTER LOADED - resp.data = ', resp.data);
+
   if (resp) {
     const { total_pages, results: resultsPg1 } = resp.data;
-    const reducedMovieListPg1 = reduceToMoviesLight(resultsPg1, img_config as PropsImgConfig);
+
+    const reducedMovieListPg1 = reduceToMoviesLight(resultsPg1, img_config);
     const promises: Promise<PropsAxiosGetMoviesShowing>[] = [];
 
     if (total_pages > 1) {
@@ -59,7 +64,7 @@ const LoadAllMoviesShowing: FC = ({ children }) => {
 
   useEffect(() => {
     if ((!movie_list || !movie_list.length) && img_config) {
-      axGetTotalShowing(acPopulateMoviesShowing, img_config as PropsImgConfig);
+      axGetTotalShowing(acPopulateMoviesShowing, img_config);
     }
   }, [img_config]);
   return <>{children}</>;

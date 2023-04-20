@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useContext, useState, useEffect } from 'react';
 import { Button, Form, Input, InputOnChangeData } from 'semantic-ui-react';
 
-import useMovieList from 'src/store/data/movies/useMovieList';
 import { PropsMovieLight } from 'src/types';
 
 import { ThandleDropdownChange } from 'src/components/Common/Dropdown';
@@ -14,15 +13,13 @@ type ThandleInputChange = (_: React.ChangeEvent<HTMLInputElement>, data: InputOn
 const dataTestIdVoteAvg = 'movies-vote-avg';
 
 const SearchMovies: FC = () => {
-  const { setMovies, setPage } = useContext(ContextMovies);
+  const { movies, setMovies, setPage } = useContext(ContextMovies);
   const [genres, setGenres] = useState<string[]>([]);
   const [voteAvg, setVoteAvg] = useState<string>('');
 
-  const { movie_list } = useMovieList();
-
   const handleSearchMovies = useCallback(() => {
-    if (movie_list) {
-      let reduced: PropsMovieLight[] = movie_list;
+    if (movies?.length) {
+      let reduced: PropsMovieLight[] = movies;
 
       if (genres.length) {
         const arrGenresAsNum: number[] = genres.map((item) => parseInt(item, 10));
@@ -47,13 +44,13 @@ const SearchMovies: FC = () => {
       setMovies(reduced);
     }
     setPage(1);
-  }, [genres, voteAvg, movie_list]);
+  }, [genres, voteAvg, movies]);
 
   useEffect(() => {
-    if (movie_list) {
+    if (movies?.length) {
       handleSearchMovies(); // preload
     }
-  }, [movie_list]);
+  }, [movies]);
 
   const handleDropdownChange: ThandleDropdownChange = (_, data) => {
     setGenres(data.value as string[]);

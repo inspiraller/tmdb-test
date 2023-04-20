@@ -112,9 +112,6 @@ const TBody: FC = () => {
           <Table.Cell verticalAlign="top" style={{ width: maxWidth }} selectable>
             <Header as="h2">{item.title}</Header>
             <p>{item.overview}</p>
-            <em>
-              <strong>Release date:</strong> {new Date(item.release_date).toLocaleDateString()}
-            </em>
             {movieCredits[item.id] && movieDetailToggle[item.id] && (
               <MovieCredits
                 movieCredit={movieCredits[item.id]}
@@ -127,6 +124,7 @@ const TBody: FC = () => {
               <MovieDetail movieDetail={movieDetails[item.id]} />
             )}
           </Table.Cell>
+          <Table.Cell>{new Date(item.release_date).toLocaleDateString()}</Table.Cell>
           <Table.Cell>{item.popularity}</Table.Cell>
           <Table.Cell>{item.vote_average}</Table.Cell>
         </tr>

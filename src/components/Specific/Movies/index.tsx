@@ -3,7 +3,6 @@ import { ProviderMovies } from './_ContextMovies';
 import MoviesCount from './MoviesCount';
 import MoviesTable from './MoviesTable';
 import MoviesPagination from './MoviesPagination';
-
 import SearchMovies from './SearchMovies';
 
 const Movies: FC = () => {

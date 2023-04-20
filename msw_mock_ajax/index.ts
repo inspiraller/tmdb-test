@@ -28,6 +28,7 @@ export const mswMoviesShowing = rest.get(`${ENDPOINT_GET_MOVIES_SHOWING}`, (req,
   } else if (page === '2') {
     results = mockMoviesShowingPg2;
   }
+  console.log('mswMoviesShowing...', {page, count:  results.length})
   return res(ctx.status(200), ctx.json({ total_pages, results }));
 });
 
