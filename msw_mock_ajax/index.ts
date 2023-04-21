@@ -1,5 +1,4 @@
 import { rest } from 'msw';
-import { Server } from 'http';
 import { setupServer, SetupServerApi } from 'msw/node';
 import { PropsMovie } from '../src/types';
 
@@ -28,7 +27,6 @@ export const mswMoviesShowing = rest.get(`${ENDPOINT_GET_MOVIES_SHOWING}`, (req,
   } else if (page === '2') {
     results = mockMoviesShowingPg2;
   }
-  console.log('mswMoviesShowing...', {page, count:  results.length})
   return res(ctx.status(200), ctx.json({ total_pages, results }));
 });
 

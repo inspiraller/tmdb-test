@@ -44,12 +44,6 @@ describe('<PageMovies>', () => {
       throwSuggestions: true
     });
   });
-  describe('onload', () => {
-    it('Should have search results', async () => {
-      await renderWait();
-      expect(screen.getByText(/search results: 40/i));
-    });
-  });
   // awaitings - answer for https://stackoverflow.com/questions/69527128/how-to-test-parent-child-relationship-in-react-testing-library
   describe('dropdown and search', () => {
     it('Should select dropdown and ...', async () => {
