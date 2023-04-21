@@ -38,3 +38,12 @@ export interface PropsImgConfig {
   base_url: string;
   poster_sizes: string[];
 }
+
+export const tableHeadings = {
+  title: 'Title',
+  popularity: 'Propularity',
+  vote_average: 'Vote Average',
+  custom_full_poster_path: 'Poster',
+  genre_ids: 'Genres',
+  release_date: 'Release'
+};

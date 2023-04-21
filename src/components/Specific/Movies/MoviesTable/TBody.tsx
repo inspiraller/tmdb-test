@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Table, Header } from 'semantic-ui-react';
 import useImgConfig from 'src/store/data/movies/useImgConfig';
+
 import { PropsImgConfig, PropsMovieLight, TAnyHook } from 'src/types';
 import getCustomFullPosterPath from 'src/util/getCustomFullPosterPath';
 import {
@@ -14,6 +15,8 @@ import { axGetMovieDetail, MovieDetail, PropsMovieDetail } from '../../LoadMovie
 import { axGetMoviePersonImg } from '../../LoadMoviePersonImage';
 
 import { ContextMovies } from '../_ContextMovies';
+
+import ButtonLoadTrailer from './ButtonLoadTrailer';
 
 type TpopulatePersonImg = (props: {
   img_config: PropsImgConfig | undefined;
@@ -79,25 +82,27 @@ const TBody: FC = () => {
   const end = 1 + maxPerPage * page;
   const start = end - maxPerPage;
   const handleClickMovie = async (evt: React.MouseEvent<HTMLElement>) => {
-    const id = (evt.currentTarget as HTMLElement).getAttribute('data-movie-id');
+    if ((evt.target as HTMLElement).tagName !== 'BUTTON') {
+      const id = (evt.currentTarget as HTMLElement).getAttribute('data-movie-id');
 
-    setMovieDetailToggle((prev) => ({ ...prev, [`${id}`]: !prev[`${id}`] }));
+      setMovieDetailToggle((prev) => ({ ...prev, [`${id}`]: !prev[`${id}`] }));
 
-    if (!movieDetails[`${id}`]) {
-      const detail = await axGetMovieDetail(Number(id));
-      if (detail) {
-        setMovieDetails((prev) => ({ ...prev, [`${id}`]: detail.data }));
+      if (!movieDetails[`${id}`]) {
+        const detail = await axGetMovieDetail(Number(id));
+        if (detail) {
+          setMovieDetails((prev) => ({ ...prev, [`${id}`]: detail.data }));
+        }
       }
-    }
-    if (!movieCredits[`${id}`]) {
-      const credits = await axGetMovieCredits(Number(id));
+      if (!movieCredits[`${id}`]) {
+        const credits = await axGetMovieCredits(Number(id));
 
-      if (credits) {
-        const { data } = credits;
-        const { cast } = data;
-        const castPopular = reduceCastByPopularity(cast);
-        setMovieCredits((prev) => ({ ...prev, [`${id}`]: { ...data, castPopular } }));
-        populatePersonImgFromCast({ img_config, castPopular, persons, setPersons });
+        if (credits) {
+          const { data } = credits;
+          const { cast } = data;
+          const castPopular = reduceCastByPopularity(cast);
+          setMovieCredits((prev) => ({ ...prev, [`${id}`]: { ...data, castPopular } }));
+          populatePersonImgFromCast({ img_config, castPopular, persons, setPersons });
+        }
       }
     }
   };
@@ -123,6 +128,8 @@ const TBody: FC = () => {
             {movieDetails[item.id] && movieDetailToggle[item.id] && (
               <MovieDetail movieDetail={movieDetails[item.id]} />
             )}
+
+            <ButtonLoadTrailer id={item.id} />
           </Table.Cell>
           <Table.Cell>{new Date(item.release_date).toLocaleDateString()}</Table.Cell>
           <Table.Cell>{item.popularity}</Table.Cell>

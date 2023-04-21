@@ -1,15 +1,15 @@
 import React, { FC, useCallback } from 'react';
-import { PropsMovieLight } from 'src/types';
 import { Table } from 'semantic-ui-react';
-import { ContextMovies } from '../_ContextMovies';
-import { headings, TCol, TsortType, updateSortTypes } from '../SearchMovies/sort';
 
+import { TTableHeading, TsortType, updateSortTypes } from 'src/util/sort';
+import { tableHeadings } from 'src/types';
 import sortKey from './sortTh';
+import { ContextMovies } from '../_ContextMovies';
 
 const capitalise = (str: string) => `${str.substring(0, 1).toUpperCase()}${str.substr(1)}`;
 
-const getTh = (key: keyof typeof headings): string => {
-  return headings[key];
+const getTh = (key: keyof typeof tableHeadings): string => {
+  return tableHeadings[key];
 };
 
 const THead: FC = () => {
@@ -23,7 +23,7 @@ const THead: FC = () => {
   //   });
   // }, []);
 
-  const handleToggle = (evt: React.KeyboardEvent, keyName: TCol) => {
+  const handleToggle = (evt: React.KeyboardEvent, keyName: TTableHeading) => {
     const isShift = evt.shiftKey;
 
     let sortType: TsortType = 'number';

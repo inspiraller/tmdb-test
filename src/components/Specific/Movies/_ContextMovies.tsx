@@ -1,7 +1,7 @@
 import React, { useState, useMemo, Dispatch, SetStateAction, useEffect } from 'react';
 import useMovieList from 'src/store/data/movies/useMovieList';
 import { PropsMovieLight, TAnyHook } from 'src/types';
-import { TarrSortTypes, sortTable } from './SearchMovies/sort';
+import { TarrSortTypes, sortTable } from 'src/util/sort';
 
 export type TsetMovies = React.Dispatch<React.SetStateAction<PropsMovieLight[]>>;
 
@@ -46,8 +46,6 @@ export const ProviderMovies: React.FC = ({ children }) => {
     const moviesUpdated = sortTable({ arrSortTypes, tableData: movies });
     setMovies(moviesUpdated);
   }, [arrSortTypes]);
-
-  
 
   const value = useMemo<PropsContext>(
     () => ({

@@ -1,27 +1,22 @@
+import { tableHeadings } from 'src/types';
+
 import type { PropsMovieLight } from 'src/types';
 
-export const headings = {
-  title: 'Title',
-  popularity: 'Propularity',
-  vote_average: 'Vote Average',
-  custom_full_poster_path: 'Poster',
-  genre_ids: 'Genres',
-  release_date: 'Release'
-};
+export type TTableHeading = keyof typeof tableHeadings;
 
-export type TCol = keyof typeof headings;
-type Tdir = 'asc' | 'desc' | '';
+export type Tdir = 'asc' | 'desc' | '';
+
 export type TsortType = 'number' | 'string';
 interface PropSortType {
   dir: Tdir;
-  col: TCol;
+  col: TTableHeading;
   sortType: TsortType;
 }
 export type TarrSortTypes = Array<PropSortType>;
 
 type tupdateSort = (props: {
   arrSortTypes: TarrSortTypes;
-  col: TCol;
+  col: TTableHeading;
   shiftKey: boolean;
   sortType: TsortType;
 }) => TarrSortTypes;
@@ -33,10 +28,15 @@ export const updateSortTypes: tupdateSort = ({ arrSortTypes, col, shiftKey, sort
     dir: 'asc',
     sortType
   };
+
   let newDir: Tdir = objDefaultSort.dir;
   const indDir = arrSortTypes.findIndex((item) => item.col === col);
   const isExist = indDir !== -1;
+
   if (isExist) {
+    // mutate existing sort to new dir
+    // (Doesn't matter if shift is clicked or not if it already exists)
+    // Toggle between the directions - asc, desc, then remove, then repeat.
     const { dir } = arrSortTypes[indDir];
     if (dir === 'asc') {
       newDir = 'desc';
@@ -46,15 +46,16 @@ export const updateSortTypes: tupdateSort = ({ arrSortTypes, col, shiftKey, sort
     if (!newDir) {
       arrSortTypesUpdate.splice(indDir, 1); // at position indDir - remove 1
     } else {
-      arrSortTypesUpdate[indDir].dir = objDefaultSort.dir;
+      arrSortTypesUpdate[indDir].dir = newDir;
     }
+  } else if (shiftKey) {
+    // append
+    arrSortTypesUpdate.push(objDefaultSort);
+  } else {
+    // default
+    arrSortTypesUpdate = [objDefaultSort];
   }
 
-  if (shiftKey && !isExist) {
-    arrSortTypesUpdate.push(objDefaultSort); // append
-  } else if (!shiftKey) {
-    arrSortTypesUpdate = [objDefaultSort]; // reset
-  } // else {} // it gets mutated anyway above
   return arrSortTypesUpdate;
 };
 
